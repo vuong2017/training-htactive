@@ -4,7 +4,8 @@ import { Router } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import createBrowserHistory from 'history/createBrowserHistory'
 
-import Layout from "./components/Layout";
+// import Layout from "./components/Layout";
+import Routes from "./router"
 import createStore from "./store";
 
 const store = createStore( window.REDUX_DATA );
@@ -12,7 +13,7 @@ const store = createStore( window.REDUX_DATA );
 const jsx = (
     <ReduxProvider store={ store }>
         <Router history={createBrowserHistory()}>
-            <Layout />
+            <Routes />
         </Router>
     </ReduxProvider>
 );

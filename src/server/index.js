@@ -6,8 +6,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter, matchPath } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import Helmet from "react-helmet";
-import routes from "../client/routes";
-import Layout from "../client/components/Layout";
+import Routes, { routes } from "../client/router"
 import createStore, { initializeSession } from "../client/store";
 
 const app = express();
@@ -31,7 +30,7 @@ app.get( "/*", ( req, res ) => {
         const jsx = (
             <ReduxProvider store={ store }>
                 <StaticRouter context={ context } location={ req.url }>
-                    <Layout location={req.url} />
+                    <Routes location={req.url} />
                 </StaticRouter>
             </ReduxProvider>
         );
