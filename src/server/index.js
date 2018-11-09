@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import Helmet from 'react-helmet';
+
 import Routes, { routes } from '../client/routes';
 import createStore, { initializeSession } from '../client/store/configureStore';
 import htmlTemplate from './render';
