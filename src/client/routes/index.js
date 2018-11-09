@@ -2,13 +2,13 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import {
-  DashBoard,
-  ReactTraining,
   Login,
   NotFound,
 } from '../views'
 
 import AdminRoutes from './admin.routes';
+import ClientRoutes from './client.routes';
+
 
 export const routes = [
   {
@@ -18,7 +18,7 @@ export const routes = [
   },
   {
     path: "/react-training",
-    component: ReactTraining,
+    component: ClientRoutes,
     exact: false,
   },
   {

@@ -30,7 +30,7 @@ export const routes = [
 class AdminRoutes extends React.Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header />
         <Sidebar />
         <Content>
@@ -41,7 +41,7 @@ class AdminRoutes extends React.Component {
           </Switch>
         </Content>
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }

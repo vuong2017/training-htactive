@@ -1,7 +1,13 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function SideBar() {
-    return <h1>SideBar</h1>
+  return (
+    <div>
+      <h1>Sidebar</h1>
+      <Link to="/admin">DashBoard</Link>
+    </div>
+  );
 }
 
 export default SideBar;

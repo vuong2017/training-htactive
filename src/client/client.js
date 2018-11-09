@@ -4,9 +4,8 @@ import { Router } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import createBrowserHistory from 'history/createBrowserHistory'
 
-// import Layout from "./components/Layout";
-import Routes from "./router"
-import createStore from "./store";
+import Routes from "./routes"
+import createStore from "./store/configureStore";
 
 const store = createStore( window.REDUX_DATA );
 
@@ -17,11 +16,6 @@ const jsx = (
         </Router>
     </ReduxProvider>
 );
-
-const a = () => {
-    console.log("co vao");
-}
-a()
 
 const app = document.getElementById( "app" );
 ReactDOM.hydrate( jsx, app );
