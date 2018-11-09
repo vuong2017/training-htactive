@@ -1,49 +1,41 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import {
-  Login,
-  NotFound,
-} from '../views'
-
+import { Login, NotFound } from '../views';
 import AdminRoutes from './admin.routes';
 import ClientRoutes from './client.routes';
 
-
 export const routes = [
   {
-    path: "/",
+    path: '/',
     component: Login,
-    exact: true,
+    exact: true
   },
   {
-    path: "/react-training",
+    path: '/react-training',
     component: ClientRoutes,
-    exact: false,
+    exact: false
   },
   {
-    path: "/admin",
+    path: '/admin',
     component: AdminRoutes,
-    exact: false,
+    exact: false
   },
   {
-    path: "",
+    path: '',
     component: NotFound,
-    exact: false,
+    exact: false
   }
 ];
 
-
-class Routes extends React.Component {
-  render() {
-    return (
-        <Switch>
-          {routes.map( route => {
-            return <Route key={route.path} {...route} />
-          })}
-        </Switch>
-    );
-  }
+function Routes() {
+  return (
+    <Switch>
+      {routes.map(route => (
+        <Route key={route.path} {...route} />
+      ))}
+    </Switch>
+  );
 }
 
 export default Routes;

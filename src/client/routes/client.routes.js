@@ -1,49 +1,43 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import {
-  ReactTraining,
-  NotFound,
-} from '../views'
+import { ReactTraining, NotFound } from '../views';
 
 import {
   Header,
-  Sidebar,
+  SideBar,
   Content,
   Footer,
-} from '../components/Layouts/Client'
+} from '../components/Layouts/Client';
 
 export const routes = [
   {
-    path: "/react-training",
+    path: '/react-training',
     component: ReactTraining,
-    exact: true,
+    exact: true
   },
   {
-    path: "",
+    path: '',
     component: NotFound,
-    exact: false,
+    exact: false
   }
 ];
 
-
-class ClientRoutes extends React.Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <Sidebar />
-        <Content>
-          <Switch>
-            {routes.map(route => {
-              return <Route key={route.path} {...route} />
-            })}
-          </Switch>
-        </Content>
-        <Footer />
-      </div>
-    );
-  }
+function ClientRoutes() {
+  return (
+    <React.Fragment>
+      <Header />
+      <SideBar />
+      <Content>
+        <Switch>
+          {routes.map(route => (
+            <Route key={route.path} {...route} />
+          ))}
+        </Switch>
+      </Content>
+      <Footer />
+    </React.Fragment>
+  );
 }
 
 export default ClientRoutes;

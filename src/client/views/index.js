@@ -4,8 +4,8 @@ import Login from './Login';
 import NotFound from './NotFound';
 
 export {
-    DashBoard,
-    ReactTraining,
-    Login,
-    NotFound
-}
+  DashBoard,
+  ReactTraining,
+  Login,
+  NotFound,
+};

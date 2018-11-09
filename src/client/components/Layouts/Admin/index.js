@@ -1,11 +1,11 @@
 import Header from './Header';
-import Sidebar from './Sidebar';
+import SideBar from './SideBar';
 import Content from './Content';
 import Footer from './Footer';
 
 export {
-    Header,
-    Sidebar,
-    Content,
-    Footer,
-}
+  Header,
+  SideBar,
+  Content,
+  Footer
+};
