@@ -1,7 +1,11 @@
 import React from 'react';
 
-function Content() {
-    return <h1>Content</h1>
+function Content({ children }) {
+    return (
+        <div style={{color:'gray'}}>
+            {children}
+        </div>
+    );
 }
 
 export default Content;

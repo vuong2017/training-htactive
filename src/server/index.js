@@ -6,12 +6,13 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter, matchPath } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import Helmet from "react-helmet";
-import Routes, { routes } from "../client/router"
-import createStore, { initializeSession } from "../client/store";
+import Routes, { routes } from "../client/routes"
+import createStore, { initializeSession } from "../client/store/configureStore";
 
 const app = express();
 
 app.use(express.static('dist'))
+app.use(express.static('public'))
 
 app.get( "/*", ( req, res ) => {
     const context = { };
@@ -54,6 +55,7 @@ function htmlTemplate( reactDom, reduxState, helmetData ) {
             ${ helmetData.title.toString( ) }
             ${ helmetData.meta.toString( ) }
             <title>React SSR</title>
+            <link rel="stylesheet" type="text/css" href="/css/style.css">
         </head>
         
         <body>
@@ -61,7 +63,7 @@ function htmlTemplate( reactDom, reduxState, helmetData ) {
             <script>
                 window.REDUX_DATA = ${ JSON.stringify( reduxState ) }
             </script>
-            <script src="../../../app.bundle.js"></script>
+            <script src="/app.bundle.js"></script>
         </body>
         </html>
     `;
