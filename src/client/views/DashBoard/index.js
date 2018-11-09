@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ReactTraining() {
-    return <h1>DashBoard</h1>
+  return <h1>DashBoard</h1>;
 }
 
-export default ReactTraining
+export default ReactTraining;
