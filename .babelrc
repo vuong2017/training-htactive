@@ -9,6 +9,12 @@
       "react",
       "jest"
   ],
+  "plugins": [
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }]
+  ],
   "env": {
       "test": {
           "presets": ["react"],
