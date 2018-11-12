@@ -1,0 +1,47 @@
+.content-wrapper {
+    width: 100%!important;
+    max-width: 100%;
+}
+
+.retina,
+.sub-main-menu .sub-menuu div:hover,
+.sub-main-menu .viewall,
+header nav ul.nav-main li a:hover,
+button.btn-responsive-nav,
+header div.search button.btn-default {
+    background: #02b6d7;
+    color: #fff;
+}
+
+.footer-wrapper,
+div.footer-copyright {
+    background: #02b6d7 url(../images/pattern.png)!important;
+    color: #fff;
+}
+
+.magnifying-glass {
+    right: 5px;
+}
+
+.magnifying-glass:hover {
+    background: transparent!important;
+    color: #000!important;
+}
+
+h1.logo img {
+    background: #02b6d7!important;
+    margin: 5px!important;
+}
+
+.qa_pop_enroll {
+    background: #02b6d7!important;
+}
+
+#btnEnroll {
+    background: #02b6d7!important;
+    border: none !important;
+}
+
+a.clsSection {
+    background: #02b6d7 url(images/pattern.png) repeat center center!important;
+}

@@ -8,7 +8,7 @@ import {
   SideBar,
   Content,
   Footer
-} from '../components/Layouts/Admin';
+} from '../components/Admin';
 
 export const routes = [
   {
