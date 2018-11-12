@@ -61,11 +61,11 @@ app.get('/*', (req, res) => {
       </ReduxProvider>
     );
     const reactDom = renderToString(jsx);
-    const reduxState = store.getState();
+    const { url } = req;
     const helmetData = Helmet.renderStatic();
 
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(htmlTemplate(reactDom, reduxState, helmetData));
+    res.end(htmlTemplate(reactDom, url, helmetData));
   });
 });
 

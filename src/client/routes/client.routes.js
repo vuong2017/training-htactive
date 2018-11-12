@@ -3,12 +3,15 @@ import { Switch, Route } from 'react-router-dom';
 
 import { ReactTraining, NotFound } from '../views';
 
+// db
+import { SideBarData } from '../db';
+
 import {
   Header,
   SideBar,
   Content,
   Footer,
-} from '../components/Layouts/Client';
+} from '../components/Client';
 
 export const routes = [
   {
@@ -27,14 +30,16 @@ function ClientRoutes() {
   return (
     <React.Fragment>
       <Header />
-      <SideBar />
-      <Content>
-        <Switch>
-          {routes.map(route => (
-            <Route key={route.path} {...route} />
-          ))}
-        </Switch>
-      </Content>
+      <div className="container">
+        <SideBar data={SideBarData} />
+        <Content>
+          <Switch>
+            {routes.map(route => (
+              <Route key={route.path} {...route} />
+            ))}
+          </Switch>
+        </Content>
+      </div>
       <Footer />
     </React.Fragment>
   );
