@@ -1,17 +1,8 @@
 import { combineReducers } from 'redux';
-
-const init = {
-  a: 'aaa'
-};
-const dataReducer = (state = init, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import { ExampleReducer } from '../reducers/example.reducer';
 
 const reducer = combineReducers({
-  data: dataReducer
+  ExampleReducer: ExampleReducer
 });
 
 export default reducer;

@@ -1,7 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { exampleActions } from '../../action/admin/example.action';
 
-function Login() {
-  return <h1>Login Page</h1>;
+class Login extends React.Component {
+  componentDidMount() {
+    this.props.fetchDataExample();
+  }
+  render() {
+    const { data } = this.props;
+    console.log('data', data);
+    return (
+      <div>
+        <h1>Login Component</h1>
+      </div>
+    )
+  }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    errMessagge: state.ExampleReducer.errMessagge,
+    isRequest: state.ExampleReducer.isRequest,
+    data: state.ExampleReducer.data,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchDataExample: () => dispatch(exampleActions.fetchDataExample())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

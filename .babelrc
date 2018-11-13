@@ -7,7 +7,9 @@
           }
       ],
       "react",
-      "jest"
+      "es2015",
+      "jest",
+      "stage-0"
   ],
   "plugins": [
     ["transform-runtime", {
