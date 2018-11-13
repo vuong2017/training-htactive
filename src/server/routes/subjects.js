@@ -2,6 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import {
   getSubjects,
+  getSubjectsJoin,
   insertSubjects,
   updateSubjects,
   deleteSubjects
@@ -41,7 +42,8 @@ const upload = multer({
 
 export default (router) => {
   router.get('/subjects', getSubjects);
+  router.get('/subjects/:id', getSubjectsJoin);
   router.post('/subjects', upload.single('logo'), insertSubjects);
-  router.post('/subjects/:id', upload.single('logo'), updateSubjects);
+  router.post('/subjects/update/:id', upload.single('logo'), updateSubjects);
   router.delete('/subjects/:id', deleteSubjects);
 };

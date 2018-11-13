@@ -14,6 +14,7 @@ class ReactTraining extends React.Component{
   }
 
   componentDidMount() {
+    const objectss = {a:1, b:2};
     setTimeout(() => {
       this.props.match.params.id ? this.setState({ data: detailsData }) : this.setState({ data: dulieubandau })
     }, 3000);
