@@ -2,10 +2,11 @@ import Subjects from '../models/subjects';
 
 const getSubjects = async (req, res) => {
   try {
-    const result = await Subjects.find();
-    if (result) {
-      res.status(200).json(result);
-    }
+    // const result = await Subjects.find();
+    // if (result) {
+    //   res.status(200).json(result);
+    // }
+    
   } catch (error) {
     res.status(500).json({ errors: 'Internal Server Error' });
   }
