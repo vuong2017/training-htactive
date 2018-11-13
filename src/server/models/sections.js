@@ -4,8 +4,11 @@ const { Schema } = mongoose;
 
 const sections = new Schema(
   {
-    sectionsId: { type: Schema.Types.ObjectId, ref: 'subjects' },
-    name: { type: String, required: [true, 'Không được để trống Name'] }
+    _id: { type: Schema.Types.ObjectId, ref: 'subjects' },
+    name: { type: String, required: [true, 'Không được để trống Name'] },
+    posts: [{
+      type: Schema.Types.ObjectId, ref: 'posts'
+    }]
   },
   { timestamps: { createdAt: 'created_at' } }
 );

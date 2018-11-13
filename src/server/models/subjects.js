@@ -7,6 +7,9 @@ const subjects = new Schema(
     name: { type: String, required: [true, 'Không được để trống Name'] },
     title: { type: String, required: [true, 'Không được để trống Title'] },
     tagline: { type: String, required: [true, 'Không được để trống TagLine'] },
+    sections: [{
+      type: Schema.Types.ObjectId, ref: 'sections'
+    }],
     logo: { type: String, required: [true, 'Không được để trống Logo'] },
   },
   { timestamps: { createdAt: 'created_at' } }

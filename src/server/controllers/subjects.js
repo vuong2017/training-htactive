@@ -1,12 +1,27 @@
 import Subjects from '../models/subjects';
+import Sections from '../models/sections';
+import Posts from '../models/posts';
+import mongoose from 'mongoose';
 
 const getSubjects = async (req, res) => {
   try {
-    // const result = await Subjects.find();
-    // if (result) {
-    //   res.status(200).json(result);
-    // }
-    
+    const result = await Subjects.find();
+    if (result) {
+      res.status(200).json(result);
+    }
+  } catch (error) {
+    res.status(500).json({ errors: 'Internal Server Error' });
+  }
+};
+
+const getSubjectsJoin = async (req, res) => {
+  try {
+    Subjects.findOne({ _id: req.params.id })
+      .populate([{ path: 'sections', populate: { path: 'posts' } }])
+      .exec(function(err, docs) {
+        if (err) res.status(404).json({ errors: "Không tìm thấy id" });
+        res.json(docs);
+      });
   } catch (error) {
     res.status(500).json({ errors: 'Internal Server Error' });
   }
@@ -78,9 +93,10 @@ const deleteSubjects = async (req, res) => {
   }
 };
 
-export {
-  getSubjects,
-  insertSubjects,
-  updateSubjects,
-  deleteSubjects
+export { 
+  getSubjects, 
+  insertSubjects, 
+  updateSubjects, 
+  deleteSubjects, 
+  getSubjectsJoin 
 };
