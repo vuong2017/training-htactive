@@ -12,13 +12,13 @@ export const routes = [
     exact: true
   },
   {
-    path: '/react-training',
-    component: ClientRoutes,
+    path: '/admin',
+    component: AdminRoutes,
     exact: false
   },
   {
-    path: '/admin',
-    component: AdminRoutes,
+    path: '/:client',
+    component: ClientRoutes,
     exact: false
   },
   {
