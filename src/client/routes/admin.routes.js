@@ -1,14 +1,25 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { DashBoard, NotFound } from '../views';
-import Admin from '../views/admin';
+import { DashBoard, NotFound, Sections, Subject } from '../views';
+import DrawerMemu from '../components/admin/drawerMenu';
+import Sidebar from '../components/admin/siderBar';
 
 export const routes = [
   {
     path: '/admin',
     component: DashBoard,
     exact: true
+  },
+  {
+    path: '/admin/sections',
+    component: Sections,
+    exact: false
+  },
+  {
+    path: '/admin/subject',
+    component: Subject,
+    exact: false
   },
   {
     path: '',
@@ -20,13 +31,13 @@ export const routes = [
 function AdminRoutes() {
   return (
     <React.Fragment>
-      <Admin>
-        <Switch>
-          {routes.map(route => (
-            <Route key={route.path} {...route} />
-          ))}
-        </Switch>
-      </Admin>
+      <DrawerMemu />
+      <Sidebar />
+      <Switch>
+        {routes.map(route => (
+          <Route key={route.path} {...route} />
+        ))}
+      </Switch>
     </React.Fragment>
   );
 }
