@@ -1,4 +1,4 @@
-import { actionEnums } from '../action/admin-action-enum';
+import { actionEnums } from '../../action/admin-action-enum';
 
 const initialState = {
   isRequest: false,
