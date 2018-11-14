@@ -2,13 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { DashBoard, NotFound } from '../views';
-
-import {
-  Header,
-  SideBar,
-  Content,
-  Footer
-} from '../components/Admin';
+import Admin from '../views/admin';
 
 export const routes = [
   {
@@ -26,16 +20,13 @@ export const routes = [
 function AdminRoutes() {
   return (
     <React.Fragment>
-      <Header />
-      <SideBar />
-      <Content>
+      <Admin>
         <Switch>
           {routes.map(route => (
             <Route key={route.path} {...route} />
           ))}
         </Switch>
-      </Content>
-      <Footer />
+      </Admin>
     </React.Fragment>
   );
 }

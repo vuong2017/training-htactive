@@ -1,0 +1,11 @@
+/* -----------------------------------------
+   Custom.css - put your own changes here 
+----------------------------------------- */
+.custom-btn-profile {
+    display: inline-block !important;
+}
+
+.fc-event-success {
+    background-color: #51bf87 !important;
+    border-color: #51bf87 !important;
+}

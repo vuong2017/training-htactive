@@ -5,7 +5,8 @@ import {
   getSubjectsJoin,
   insertSubjects,
   updateSubjects,
-  deleteSubjects
+  deleteSubjects,
+  getSelect
 } from '../controllers/subjects';
 
 // Set The Storage Engine
@@ -43,6 +44,7 @@ const upload = multer({
 export default (router) => {
   router.get('/subjects', getSubjects);
   router.get('/subjects/:id', getSubjectsJoin);
+  router.get('/search', getSelect);
   router.post('/subjects', upload.single('logo'), insertSubjects);
   router.post('/subjects/update/:id', upload.single('logo'), updateSubjects);
   router.delete('/subjects/:id', deleteSubjects);
