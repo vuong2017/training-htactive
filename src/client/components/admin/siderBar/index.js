@@ -3,10 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class Sidebar extends Component {
+  reset() {
+    this.props.history.push('/admin')
+    window.location.reload()
+  }
   render() {
     return (
       <div id="header" className="page-navbar">
-        <a className="navbar-brand hidden-xs hidden-sm">
+        <a className="navbar-brand hidden-xs hidden-sm" style={{ cursor: 'pointer' }} onClick={()=>this.reset()}>
           <img src="img/logo.png" className="logo hidden-xs" alt="HT Active" />
           <img src="img/logosm.png" className="logo-sm hidden-lg hidden-md" alt="HT Active" />
         </a>
