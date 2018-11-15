@@ -1,6 +1,5 @@
 import Sections from '../models/sections';
 import Subjects from '../models/subjects';
-import Post from '../models/posts';
 import mongoose from 'mongoose';
 
 const getSections = async (req, res, next) => {
@@ -23,6 +22,24 @@ const getSections = async (req, res, next) => {
     }
   })
 };
+
+const getFindById = async (req, res, next) => {
+  Sections.findById(require('mongoose').Types.ObjectId(req.query.sections_id), (err, items) => {
+    if (!err) {
+      res.json({
+        status: true,
+        data: items,
+        message: 'Thành công !'
+      })
+    } else {
+      res.json({
+        status: false,
+        data: {},
+        message: `Thất bại, lỗi là: ${err}`
+      })
+    }
+  })
+}
 
 const insertItemSections = async (req, res, next) => {
   const newData = new Sections({
@@ -74,9 +91,6 @@ const updateItemSections = async (req, res, next) => {
   const options = {
     new: true
   }
-  // if (mongoose.Types.ObjectId.isValid(req.body._id)) {
-
-  // }
   Sections.findOneAndUpdate(conditions, { $set: newValues }, options, (err, updateItems) => {
     if (!err) {
       res.json({
@@ -103,7 +117,7 @@ const deleteItems = async (req, res) => {
       })
       return;
     }
-    Sections.findOneAndRemove({ SubjectsId: mongoose.Types.ObjectId(req.body.subjects_id) }, (err) => {
+    Sections.findOneAndRemove({ _id: mongoose.Types.ObjectId(req.body.subjects_id) }, (err) => {
       if (err) {
         res.json({
           status: false,
@@ -124,5 +138,6 @@ export {
   getSections,
   insertItemSections,
   updateItemSections,
-  deleteItems
+  deleteItems,
+  getFindById
 }
