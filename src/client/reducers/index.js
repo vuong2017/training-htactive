@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { ExampleReducer } from './example.reducer';
+import { ExampleReducer } from './admin/example.reducer';
 import { SubjectsReducer } from './subjects.reducer';
 import { Posts } from './posts.reducer';
 
