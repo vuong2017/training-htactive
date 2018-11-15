@@ -1,5 +1,6 @@
 import Sections from '../models/sections';
 import Subjects from '../models/subjects';
+import Post from '../models/posts';
 import mongoose from 'mongoose';
 
 const getSections = async (req, res, next) => {
@@ -58,7 +59,7 @@ const insertItemSections = async (req, res, next) => {
               status: true,
               data: items,
               count: items.length,
-              messages: 'get data success !'
+              messages: 'insert data success !'
             })
           } else {
             res.json({
@@ -85,53 +86,77 @@ const updateItemSections = async (req, res, next) => {
     return;
   }
   const newValues = {};
-  if (req.body.name && req.body.name.length > 2) {
+  if (req.body.name && req.body.name.length > 0) {
     newValues.name = req.body.name;
-  }
-  const options = {
-    new: true
-  }
-  Sections.findOneAndUpdate(conditions, { $set: newValues }, options, (err, updateItems) => {
-    if (!err) {
-      res.json({
-        status: true,
-        data: updateItems,
-        messages: 'Cập nhật thành công !'
-      })
-    } else {
-      res.json({
-        status: false,
-        data: {},
-        messages: 'Cập nhật thất bại !'
-      })
+    const options = {
+      new: true
     }
-  })
-}
-
-const deleteItems = async (req, res) => {
-  Subjects.findOneAndRemove({ _id: mongoose.Types.ObjectId(req.body.subjects_id) }, (err) => {
-    if (err) {
-      res.json({
-        status: false,
-        messages: `Không thể xóa Subjects id. Lỗi là ${err}`
-      })
-      return;
-    }
-    Sections.findOneAndRemove({ _id: mongoose.Types.ObjectId(req.body.subjects_id) }, (err) => {
-      if (err) {
-        res.json({
-          status: false,
-          messages: `Không thể xóa SubjectsId ${req.body.subjects_id}. Lỗi là ${err}`
-        })
-        return;
-      } else {
+    Sections.findOneAndUpdate(conditions, { $set: newValues }, options, (err, updateItems) => {
+      if (!err) {
         res.json({
           status: true,
-          messages: 'Xoá thành công !'
+          data: updateItems,
+          messages: 'Cập nhật thành công !'
         })
       }
     })
-  })
+  } else {
+    const result = {
+      status: false,
+      data: {},
+      message: {}
+    }
+    req.body.name.length < 1 ? result.message.name = 'Tên không được để trống' : null,
+      res.json(result)
+  }
+}
+
+const deleteItems = async (req, res) => {
+  try {
+    const result = await Sections.findOneAndRemove({
+      _id: req.body.section_id
+    });
+    if (result) {
+      await Subjects.update(
+        { _id: req.body.subjects_id },
+        { $pull: { sections: result._id } },
+        { safe: true }
+      );
+      const deletePost = await result.posts.map(async (e) => {
+        await Post.findOneAndRemove({
+          _id: e
+        })
+        return e;
+      })
+      const data = {
+        status: true,
+        data: result,
+        test: deletePost,
+        messages: 'Xóa thành công !'
+      }
+      return res.status(200).json(data)
+    } else {
+      const err = {
+        status: false,
+        message: 'Xóa Thất bại !'
+      }
+      res.status(404).json(err)
+    }
+  } catch (e) {
+    const data = {
+      status: false,
+      data: [],
+    }
+    if (err.status === 404) {
+      data.messages = err.messages;
+      return res.status(404).json(data);
+    }
+    if (!err.name) {
+      data.messages = 'Không tìm thấy id';
+      return res.status(404).json(data);
+    }
+    data.messages = "Lỗi máy chủ"
+  }
 }
 
 export {
