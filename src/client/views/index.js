@@ -1,11 +1,11 @@
 import DashBoard from './DashBoard';
-import ReactTraining from './ReactTraining';
+import Training from './Training';
 import Login from './Login';
 import NotFound from './NotFound';
 
 export {
   DashBoard,
-  ReactTraining,
+  Training,
   Login,
   NotFound,
 };

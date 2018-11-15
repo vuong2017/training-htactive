@@ -1,57 +1,48 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { ReactTraining, NotFound } from '../views';
+import { SubjectActions } from '../action/client/subjects.action';
+import { Training, NotFound } from "../views";
 
-// db
-import { SideBarData, SideBarData1 } from '../db';
-
-import { Header, SideBar, Content, Footer } from '../components/Client';
+import { Header, SideBar, Content, Footer } from "../components/Training";
 
 export const routes = [
   {
-    path: '/:client',
-    component: ReactTraining,
+    path: "/:client",
+    component: Training,
     exact: true
   },
   {
-    path: '/:client/:id',
-    component: ReactTraining,
+    path: "/:client/:id",
+    component: Training,
     exact: true
   },
   {
-    path: '',
+    path: "",
     component: NotFound,
     exact: false
   }
 ];
 
 class ClientRoutes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-      status: false,
-    };
-  }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.match.params.client === "react" ? this.setState({ data: SideBarData, status: true }) : this.setState({ data: SideBarData1, status: true })
-      
-    }, 1000);
+    this.props.fetchDataSubjects(this.props.match.params.client);
   }
-
   render() {
-    console.log( 'chinh', this.props.match.params.client );
-    if (!this.state.status) {
-      return <h1>dang fetch</h1>
+    const { isRequest, data, isLoading, status } = this.props;
+    if (isLoading || isRequest) {
+      return <h1>dang fetch</h1>;
+    }
+    if (!status && !isLoading) {
+      return <NotFound />
     }
     return (
       <React.Fragment>
         <Header />
         <div className="container">
-          <SideBar data={this.state.data} />
+          <SideBar data={data} />
           <Content>
             <Switch>
               {routes.map(route => (
@@ -66,4 +57,21 @@ class ClientRoutes extends React.Component {
   }
 }
 
-export default ClientRoutes;
+const mapStateToProps = ({ SubjectsReducer }) => {
+  return {
+    isLoading: SubjectsReducer.isLoading,
+    messages: SubjectsReducer.messages,
+    isRequest: SubjectsReducer.isRequest,
+    data: SubjectsReducer.data,
+    status: SubjectsReducer.status
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchDataSubjects: (id) => dispatch(SubjectActions.fetchDataSubjects(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClientRoutes);
+

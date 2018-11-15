@@ -24,7 +24,6 @@ const fetchDataExample = () => {
     const result = await getExampleServices();
     if (result) {
       dispatch(getExample(true, result, null))
-      console.log('result', result);
     } else {
       dispatch(getExample(false, result && result ? 'MESSAGE ERROR 1' : 'MESSAGE ERROR 2'))
     }

@@ -7,10 +7,18 @@ const getSubjects = async (req, res) => {
   try {
     const result = await Subjects.find();
     if (result) {
-      res.status(200).json(result);
+      const data = {
+        status: true,
+        content: result,
+        messages: 'Lấy Dữ Liệu Thành Công'
+      };
+      return res.status(200).json(data);
     }
   } catch (error) {
-    res.status(500).json({ errors: 'Internal Server Error' });
+    const data = {
+      status: false,
+    };
+    return res.status(500).json(data.messages = 'Internal Server Error');
   }
 };
 
@@ -18,12 +26,30 @@ const getSubjectsJoin = async (req, res) => {
   try {
     Subjects.findOne({ _id: req.params.id })
       .populate([{ path: 'sections', populate: { path: 'posts' } }])
-      .exec(function(err, docs) {
-        if (err) res.status(404).json({ errors: "Không tìm thấy id" });
-        res.json(docs);
+      .exec(function(err, result) {
+        if (err) return res.status(404).json({ 
+          status: false,
+          messages: "Không tìm thấy id" 
+        });
+        if (result) {
+          const data = {
+            status: true,
+            content: result,
+            messages: 'Lấy Dữ Liệu Thành Công'
+          };
+          return res.status(200).json(data);
+        } else {
+          return res.status(404).json({ 
+            status: false,
+            messages: "Không tìm thấy dư liệu" 
+          });
+        }
       });
   } catch (error) {
-    res.status(500).json({ errors: 'Internal Server Error' });
+    const data = {
+      status: false,
+    };
+    return res.status(500).json(data.messages = 'Internal Server Error');
   }
 };
 
@@ -35,17 +61,20 @@ const insertSubjects = async (req, res) => {
     const result = await insertData.save();
     if (result) {
       const data = {
-        status: 'Thành Công',
+        status: true,
         content: result,
         messages: 'Thêm Mới Thành Công'
       };
-      res.status(200).json(data);
+      return res.status(200).json(data);
     }
   } catch (err) {
+    const data = {
+      status: false,
+    };
     if (err.name === 'MongoError') {
-      res.status(500).json({ errors: 'Internal Server Error' });
+      return res.status(500).json(data.messages = 'Internal Server Error');
     }
-    res.status(401).json(err);
+    return res.status(401).json(data.messages = err);
   }
 };
 
@@ -60,17 +89,20 @@ const updateSubjects = async (req, res) => {
     );
     if (result) {
       const data = {
-        status: 'Thành Công',
+        status: true,
         content: result,
         messages: 'Cập Nhật Thành Công'
       };
-      res.status(200).json(data);
+      return res.status(200).json(data);
     }
   } catch (err) {
+    const data = {
+      status: false,
+    };
     if (err.name === 'MongoError') {
-      res.status(500).json({ errors: 'Internal Server Error' });
+      return res.status(500).json(data.messages = 'Internal Server Error');
     }
-    res.status(404).json(err);
+    return res.status(401).json(data.messages = err);
   }
 };
 
@@ -79,17 +111,20 @@ const deleteSubjects = async (req, res) => {
     const result = await Subjects.findOneAndRemove({ _id: req.params.id });
     if (result) {
       const data = {
-        status: 'Thành Công',
+        status: true,
         content: result,
         messages: 'Xóa Thành Công'
       };
-      res.status(200).json(data);
+      return res.status(200).json(data);
     }
   } catch (err) {
+    const data = {
+      status: false,
+    };
     if (err.name === 'MongoError') {
-      res.status(500).json({ errors: 'Internal Server Error' });
+      return res.status(500).json(data.messages = 'Internal Server Error');
     }
-    res.status(404).json(err);
+    return res.status(401).json(data.messages = err);
   }
 };
 
