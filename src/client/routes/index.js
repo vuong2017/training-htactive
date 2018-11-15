@@ -1,11 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { Login, NotFound } from '../views';
+import { Login, Category, NotFound } from '../views';
 import AdminRoutes from './admin.routes';
-import ClientRoutes from './client.routes';
 import CategoryRoutes from './category.routes';
-
 
 export const routes = [
   {
@@ -20,13 +18,12 @@ export const routes = [
   },
   {
     path: '/category',
-    component: CategoryRoutes,
-    exact: false
+    component: Category,
+    exact: true
   },
-
   {
-    path: '/:client',
-    component: ClientRoutes,
+    path: '/category/:idSubjects',
+    component: CategoryRoutes,
     exact: false
   },
   {

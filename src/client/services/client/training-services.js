@@ -1,16 +1,16 @@
 import { getTakenData } from "../base-services";
 import BaseUrl from "../../common/baseUrl";
 
-const getPostsServices = async () => {
+const getTrainingServices = async (id) => {
   try {
-    const url = `${BaseUrl.Api}/posts`;
+    const url = `${BaseUrl.Api}/subjects/${id}`;
     return await getTakenData(url);
   } catch (e) {
     throw e;
   }
 };
 
-const getPostsIdServices = async (idSubjects, idPosts) => {
+const getTNPostIdServices = async (idSubjects, idPosts) => {
   try {
     const url = `${BaseUrl.Api}/post/${idSubjects}/${idPosts}`;
     return await getTakenData(url);
@@ -19,4 +19,4 @@ const getPostsIdServices = async (idSubjects, idPosts) => {
   }
 };
 
-export { getPostsServices, getPostsIdServices };
+export { getTrainingServices, getTNPostIdServices };
