@@ -28,7 +28,7 @@ class SideBar extends React.Component{
                                         <ul className="submenu">
                                             {e.posts && e.posts.map((e, i) => { return (
                                             <li className={`clsLecture ${i ? '' : 'activebar'}`} id={i} key={e._id}>
-                                                <Link to={`/${this.props.match.params.client}/${e._id}`}>
+                                                <Link to={`/category/${this.props.match.params.idSubjects}/${e._id}`}>
                                                     <i className={`${i ? 'fa fa-play-circle-o' : 'fa fa-home'}`}></i>{e.title}
                                                 </Link>
                                             </li>

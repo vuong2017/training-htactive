@@ -87,9 +87,8 @@ function htmlTemplate(reactDom, url, helmetData) {
     </body>
     </html>
    `;
-  }
-
-  if (url.search('/category') !== -1) {
+	}
+  if (url === "/category/") {
     return `
     <!DOCTYPE html>
     <html>
@@ -152,7 +151,6 @@ function htmlTemplate(reactDom, url, helmetData) {
     </html>
    `;
   }
-
   return `
     <!DOCTYPE html>
     <html>
