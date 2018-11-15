@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux';
-import { ExampleReducer } from '../reducers/admin/example.reducer';
+
+import { ExampleReducer } from './example.reducer';
+import { SubjectsReducer } from './subjects.reducer';
+import { Posts } from './posts.reducer';
 
 const reducer = combineReducers({
-  ExampleReducer: ExampleReducer
+  ExampleReducer,
+  SubjectsReducer,
+  Posts
 });
 
 export default reducer;

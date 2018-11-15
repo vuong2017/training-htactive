@@ -8,7 +8,6 @@ class Login extends React.Component {
   }
   render() {
     const { data } = this.props;
-    console.log('data', data);
     return (
       <div>
         <h1>Login Component</h1>

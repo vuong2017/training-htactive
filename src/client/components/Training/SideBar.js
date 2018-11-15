@@ -1,5 +1,6 @@
-/*eslint-disable */
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from "react-router";
 
 class SideBar extends React.Component{
   render() {
@@ -17,19 +18,19 @@ class SideBar extends React.Component{
                         <div className="crs-left-tagline">{data.tagline}</div>
                     </a>
                 </div>
-                {data.section.map((e, i) => {
+                {data.sections && data.sections.map((e, i) => {
                     return (
-                        <div className="main-scroll" key={e.id}>
+                        <div className="main-scroll" key={e._id}>
                             <div className="scroller">
                                 <ul className="nav left-menu">
                                     <li>
                                         <a href="javascript:void(0);" className="clsSection">{e.name}</a>
                                         <ul className="submenu">
-                                            {e.posts.map((e, i) => { return (
-                                            <li className={`clsLecture ${i ? '' : 'activebar'}`} id={i} key={e.id}>
-                                                <a href="https://www.tutorialspoint.com/reactjs_online_training/index.asp">
-                                                    <i className={`${i ? 'fa fa-play-circle-o' : 'fa fa-home'}`}></i> {e.title}
-                                                </a>
+                                            {e.posts && e.posts.map((e, i) => { return (
+                                            <li className={`clsLecture ${i ? '' : 'activebar'}`} id={i} key={e._id}>
+                                                <Link to={`/${this.props.match.params.client}/${e._id}`}>
+                                                    <i className={`${i ? 'fa fa-play-circle-o' : 'fa fa-home'}`}></i>{e.title}
+                                                </Link>
                                             </li>
                                             ) })}
                                         </ul>
@@ -47,4 +48,4 @@ class SideBar extends React.Component{
   }
 }
 
-export default SideBar;
+export default withRouter(SideBar);
