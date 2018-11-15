@@ -17,6 +17,8 @@ const getSubjects = (isSuccess, data) => {
   }
 }
 
+
+
 const fetchDataSubjects = (id) => async dispatch => {
   dispatch(subjectsRequest());
   try {
@@ -29,6 +31,8 @@ const fetchDataSubjects = (id) => async dispatch => {
       dispatch(getSubjects(false, error))
   }
 };
+
+
 
 export const SubjectActions = {
   fetchDataSubjects

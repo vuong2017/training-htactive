@@ -88,6 +88,71 @@ function htmlTemplate(reactDom, url, helmetData) {
     </html>
    `;
   }
+
+  if (url.search('/category') !== -1) {
+    return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+	<meta charset='utf-8'>
+	${helmetData.title.toString()}
+	${helmetData.meta.toString()}
+	<meta charset="utf-8">
+			<title>Web Development Technologies</title>
+			<meta name="description" content="Web Development Technologies - Tutorials for DOM, AngularJS, SVG, XSD, XPath, XSLT, Web Development Technologies including Adobe Flex, GWT, JSF, ASP.Net, HTML, HTML5, XHTML, CSS, Javascript, VBScript, jQuery, jQueryUI, Bootstrap, Prototype, script.aculo.us, Web Developer's Guide, Ruby on Rails etc.">
+			<meta name="Keywords" content="Tutorials, AngularJS, SVG, XSD, XPath, XSLT, Flex, GWT, JSF, ASP.Net, HTML, HTML5, XHTML, CSS, Javascript, VBScript, jQuery, jQueryUI, Bootstrap, Prototype, script.aculo.us, Web Developer's Guide, Ruby on Rails ">
+
+			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+			<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+			<meta property="og:locale" content="en_US">
+			<meta property="og:type" content="website">
+			<meta property="fb:app_id" content="471319149685276">
+			<meta property="og:site_name" content="www.tutorialspoint.com">
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-status-bar-style" content="black">
+			<meta name="author" content="tutorialspoint.com">
+
+			<script type="text/javascript" src="/category/js/script-min-v4.js"></script><style></style>
+			<link rel="stylesheet" href="/category/css/style-min.css">
+			<link rel="stylesheet" type="text/css" 
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+			<script>
+			function openNav() {	
+			document.getElementById("mySidenav").style.width = "250px";
+			document.getElementById("right_obs").style.display = "block";
+			}
+			function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("right_obs").style.display = "none";
+			}
+			function close_obs_sidenav(){
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("right_obs").style.display = "none";
+			}
+			</script>
+			<script>
+			$(document).ready(function() {
+			$('input[name="q"]').keydown(function(event){
+				if(event.keyCode == 13) {
+				event.preventDefault();
+				return false;
+				}
+			});
+			});
+			</script>
+    </head>
+    
+	<body onload="prettyPrint()" style="">
+        	<div id='app'>${reactDom}</div>
+			<script src='/app.bundle.js'></script>
+			<link rel="stylesheet" href="/category/css/menu-style-min.css">
+			<link rel="stylesheet" type="text/css" href="/category/css/custom.css">
+			<script type="text/javascript" src="/category/js/custom-min.js">
+    </body>
+    </html>
+   `;
+  }
+
   return `
     <!DOCTYPE html>
     <html>

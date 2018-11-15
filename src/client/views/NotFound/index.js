@@ -1,7 +1,11 @@
 import React from 'react';
 
-function NotFound() {
-  return <h1>Not Found Page</h1>;
+class NotFound extends React.Component{
+  
+
+  render(){
+    return <h1>NotFound</h1>
+  }
 }
 
-export default NotFound;
+export default(NotFound);

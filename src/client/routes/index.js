@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import { Login, NotFound } from '../views';
 import AdminRoutes from './admin.routes';
 import ClientRoutes from './client.routes';
+import CategoryRoutes from './category.routes';
+
 
 export const routes = [
   {
@@ -16,6 +18,12 @@ export const routes = [
     component: AdminRoutes,
     exact: false
   },
+  {
+    path: '/category',
+    component: CategoryRoutes,
+    exact: false
+  },
+
   {
     path: '/:client',
     component: ClientRoutes,
