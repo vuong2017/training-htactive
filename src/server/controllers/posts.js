@@ -80,7 +80,7 @@ const deletePosts = async (req, res) => {
     });
     if (result) {
       await Sections.update( 
-        { _id: "5bea79a387619c21c4483b41" },
+        { _id: "5bea79a387619c21c4483a46" },
         { $pull: { posts : result._id } },
         { safe: true });
       const data = {
