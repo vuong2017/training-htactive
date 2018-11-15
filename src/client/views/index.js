@@ -1,4 +1,6 @@
-import DashBoard from './DashBoard';
+import DashBoard from './admin';
+import Sections from './admin/sections';
+import Subject from './admin/subject';
 import Training from './Training';
 import Login from './Login';
 import NotFound from './NotFound';
@@ -8,4 +10,6 @@ export {
   Training,
   Login,
   NotFound,
+  Sections,
+  Subject
 };

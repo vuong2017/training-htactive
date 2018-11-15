@@ -7,12 +7,19 @@ const getSubjects = async (req, res) => {
   try {
     const result = await Subjects.find();
     if (result) {
+<<<<<<< HEAD
       const data = {
         status: true,
         content: result,
         messages: 'Lấy Dữ Liệu Thành Công'
       };
       return res.status(200).json(data);
+=======
+      res.status(200).json({
+        status: true,
+        data: result
+      });
+>>>>>>> b6a00c8de0956bf2ff2ee7566824e082e2e47028
     }
   } catch (error) {
     const data = {
@@ -26,6 +33,7 @@ const getSubjectsJoin = async (req, res) => {
   try {
     Subjects.findOne({ _id: req.params.id })
       .populate([{ path: 'sections', populate: { path: 'posts' } }])
+<<<<<<< HEAD
       .exec(function(err, result) {
         if (err) return res.status(404).json({ 
           status: false,
@@ -44,6 +52,11 @@ const getSubjectsJoin = async (req, res) => {
             messages: "Không tìm thấy dư liệu" 
           });
         }
+=======
+      .exec(function (err, docs) {
+        if (err) res.status(404).json({ errors: "Không tìm thấy id" });
+        res.json(docs);
+>>>>>>> b6a00c8de0956bf2ff2ee7566824e082e2e47028
       });
   } catch (error) {
     const data = {
@@ -52,6 +65,41 @@ const getSubjectsJoin = async (req, res) => {
     return res.status(500).json(data.messages = 'Internal Server Error');
   }
 };
+
+const getSelect = async (req, res, next) => {
+  if (!req.query.name) {
+    res.json({
+      status: false,
+      data: [],
+      messege: "Input parameters is wrong!. 'name' must be not NULL"
+    })
+  }
+  var criteria = {
+    name: new RegExp('^' + req.query.name + '$', "i")
+  };
+  var limit = parseInt(req.query.limit) > 0 ? parseInt(req.query.limit) : 100;
+  Subjects.find(criteria).limit(limit).sort({ name: 1 }).select({
+    name: 1,
+    title: 1,
+    tagline: 1,
+    status: 1
+  }).exec((err, items) => {
+    if (err) {
+      res.json({
+        status: false,
+        data: [],
+        message: `Error is: ${err}`
+      })
+    } else {
+      res.json({
+        status: true,
+        data: items,
+        count: items.length,
+        message: `Search Suucess item !`
+      })
+    }
+  })
+}
 
 const insertSubjects = async (req, res) => {
   try {
@@ -74,7 +122,11 @@ const insertSubjects = async (req, res) => {
     if (err.name === 'MongoError') {
       return res.status(500).json(data.messages = 'Internal Server Error');
     }
-    return res.status(401).json(data.messages = err);
+    res.status(401).json({
+      status: false,
+      data: [],
+      messages: err
+    });
   }
 };
 
@@ -102,7 +154,15 @@ const updateSubjects = async (req, res) => {
     if (err.name === 'MongoError') {
       return res.status(500).json(data.messages = 'Internal Server Error');
     }
+<<<<<<< HEAD
     return res.status(401).json(data.messages = err);
+=======
+    res.status(401).json({
+      status: false,
+      data: [],
+      messages: err
+    });
+>>>>>>> b6a00c8de0956bf2ff2ee7566824e082e2e47028
   }
 };
 
@@ -124,14 +184,23 @@ const deleteSubjects = async (req, res) => {
     if (err.name === 'MongoError') {
       return res.status(500).json(data.messages = 'Internal Server Error');
     }
+<<<<<<< HEAD
     return res.status(401).json(data.messages = err);
+=======
+    res.status(401).json({
+      status: false,
+      data: [],
+      messages: err
+    });
+>>>>>>> b6a00c8de0956bf2ff2ee7566824e082e2e47028
   }
 };
 
-export { 
-  getSubjects, 
-  insertSubjects, 
-  updateSubjects, 
-  deleteSubjects, 
-  getSubjectsJoin 
+export {
+  getSubjects,
+  insertSubjects,
+  updateSubjects,
+  deleteSubjects,
+  getSubjectsJoin,
+  getSelect
 };
