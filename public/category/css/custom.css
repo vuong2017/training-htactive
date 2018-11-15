@@ -1,0 +1,50 @@
+.content-wrapper{
+	width: 100%!important;
+	max-width: 100%;
+}
+.nav-main{
+	margin-top: 20px;
+}
+.list-item{
+	padding: 20px 0;
+	overflow:hidden;
+}
+.course-box{
+	    padding: 20px 8px!important;
+		box-shadow: 0px 1px 1px 2px #ccc;
+}
+.course-box img{
+	height: 100px!important;
+	width: auto;
+	object-fit:cover;
+}
+.name-item{
+	color: #fff!important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: 500;
+}
+
+
+
+@media (max-width: 990px){
+.navbar .nav-main {
+    display: block!important;
+    left: 0px!important;
+}
+}
+
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #353535 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #353535 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #353535 !important;}
+.submenu-item{ border-bottom: 2px solid #353535 !important; border-top: 2px solid #353535 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#353535; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright{
+	background: #353535 url(./../images/pattern.png) repeat center center !important;
+}

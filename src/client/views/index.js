@@ -4,6 +4,7 @@ import Subject from './admin/subject';
 import Training from './Training';
 import Login from './Login';
 import NotFound from './NotFound';
+import Category from './Category';
 
 export {
   DashBoard,
@@ -11,5 +12,6 @@ export {
   Login,
   NotFound,
   Sections,
-  Subject
+  Subject,
+  Category
 };
