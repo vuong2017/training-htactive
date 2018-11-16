@@ -2,27 +2,27 @@ import React from 'react';
 import { connect } from "react-redux";
 
 import { Options, ContentDetails } from '../../components/Training'
-import { PostsActions } from '../../action/client/posts.action';
+import { TrainingActions } from '../../action/client/training.action';
 
 class Training extends React.Component{
 
   componentDidMount() {
-    const { id, client } = this.props.match.params;
+    const { idPosts, idSubjects } = this.props.match.params;
     const content = {
-      content: this.props.dataSubjects.sections[0] ? this.props.dataSubjects.sections[0].posts[0] : ''
+      content: this.props.dataTraining.sections[0] ? this.props.dataTraining.sections[0].posts[0] : ''
     }
-    id ? this.props.fetchDataPostsId(client, id) : this.props.getPostsId(true, content)
+    idPosts ? this.props.fetchDataTNPostId(idSubjects, idPosts) : this.props.getTrainingPost(true, content)
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.match.params.id !== nextProps.match.params.id) {
-      const { id, client } = nextProps.match.params
-      this.props.fetchDataPostsId(client, id)
+    if(this.props.match.params.idPosts !== nextProps.match.params.idPosts) {
+      const { idPosts, idSubjects } = nextProps.match.params
+      this.props.fetchDataTNPostId(idSubjects, idPosts)
     }
   }
 
   render() {
-    const { content, isLoading } = this.props; 
-    if (isLoading) {
+    const { content, isLoadingPost } = this.props; 
+    if (isLoadingPost) {
       return <h1>Dang fetch</h1>
     }
     if (content) {
@@ -30,15 +30,15 @@ class Training extends React.Component{
         <div className="content-wrapper" style={{ height: 'auto!important' }}>
             <div>
                 <div className="content-body">
-                    <Options
+                    {/* <Options
                       prevTitle="Previous Page"
                       nextTitle="Next Page" 
-                    />
+                    /> */}
                     <ContentDetails data={content} />
-                    <Options
+                    {/* <Options
                       prevTitle="Previous Page"
                       nextTitle="Next Page" 
-                    />
+                    /> */}
                 </div>
                 <iframe id="download" style={{ display: 'none',visibility: 'hidden' }}></iframe>
             </div>
@@ -49,18 +49,18 @@ class Training extends React.Component{
   }
 }
 
-const mapStateToProps = ({ Posts, SubjectsReducer }) => {
+const mapStateToProps = ({ TrainingReducer }) => {
   return {
-    isLoading: Posts.isLoading,
-    content: Posts.content,
-    dataSubjects: SubjectsReducer.data
+    isLoadingPost: TrainingReducer.isLoadingPost,
+    content: TrainingReducer.content,
+    dataTraining: TrainingReducer.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPostsId: (isSuccess, data) => dispatch(PostsActions.getPostsId(isSuccess, data)),
-    fetchDataPostsId: (idSubjects, idPosts) => dispatch(PostsActions.fetchDataPostsId(idSubjects, idPosts)),
+    getTrainingPost: (isSuccess, data) => dispatch(TrainingActions.getTrainingPost(isSuccess, data)),
+    fetchDataTNPostId: (idSubjects, idPosts) => dispatch(TrainingActions.fetchDataTNPostId(idSubjects, idPosts)),
   }
 }
 

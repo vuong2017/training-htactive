@@ -2,19 +2,19 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { SubjectActions } from '../action/client/subjects.action';
+import { TrainingActions } from '../action/client/training.action';
 import { Training, NotFound } from "../views";
 
 import { Header, SideBar, Content, Footer } from "../components/Training";
 
 export const routes = [
   {
-    path: "/:client",
+    path: "/category/:idSubjects",
     component: Training,
     exact: true
   },
   {
-    path: "/:client/:id",
+    path: "/category/:idSubjects/:idPosts",
     component: Training,
     exact: true
   },
@@ -25,10 +25,10 @@ export const routes = [
   }
 ];
 
-class ClientRoutes extends React.Component {
+class CategoryRoutes extends React.Component {
 
   componentDidMount() {
-    this.props.fetchDataSubjects(this.props.match.params.client);
+    this.props.fetchDataTN(this.props.match.params.idSubjects);
   }
   render() {
     const { isRequest, data, isLoading, status } = this.props;
@@ -57,21 +57,21 @@ class ClientRoutes extends React.Component {
   }
 }
 
-const mapStateToProps = ({ SubjectsReducer }) => {
+const mapStateToProps = ({ TrainingReducer }) => {
   return {
-    isLoading: SubjectsReducer.isLoading,
-    messages: SubjectsReducer.messages,
-    isRequest: SubjectsReducer.isRequest,
-    data: SubjectsReducer.data,
-    status: SubjectsReducer.status
+    isLoading: TrainingReducer.isLoading,
+    messages: TrainingReducer.messages,
+    isRequest: TrainingReducer.isRequest,
+    data: TrainingReducer.data,
+    status: TrainingReducer.status
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchDataSubjects: (id) => dispatch(SubjectActions.fetchDataSubjects(id))
+    fetchDataTN: (id) => dispatch(TrainingActions.fetchDataTN(id))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientRoutes);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryRoutes);
 
