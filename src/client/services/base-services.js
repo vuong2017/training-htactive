@@ -3,12 +3,13 @@ import { getCurrentUserToken } from './local-storage-service';
 
 const postTakenData = async (url, data) => {
   try {
-    const token = await getCurrentUserToken();
+    // const token = await getCurrentUserToken();
     const result = await axios({
       method: 'post',
       url,
       headers: {
-        AccessToken: token
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       data
     })
@@ -23,7 +24,7 @@ const postTakenData = async (url, data) => {
 
 const getTakenData = async (url) => {
   try {
-    const token = await getCurrentUserToken();
+    // const token = await getCurrentUserToken();
     const result = await axios({
       method: 'get',
       url,

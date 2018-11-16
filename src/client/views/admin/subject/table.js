@@ -1,40 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import UpdateSubject from './updateSubject';
+import { subjectActions } from '../../../action/admin/subject.action';
 
-const fakeData = [
-  {
-    id: 1,
-    nameSubject: 'nameSubject',
-    newfeed: 'newfeed'
-  },
-  {
-    id: 2,
-    nameSubject: 'nameSubject',
-    newfeed: 'newfeed'
-  },
-  {
-    id: 3,
-    nameSubject: 'nameSubject',
-    newfeed: 'newfeed'
-  },
-  {
-    id: 4,
-    nameSubject: 'nameSubject',
-    newfeed: 'newfeed'
-  },
-  {
-    id: 5,
-    nameSubject: 'nameSubject',
-    newfeed: 'newfeed'
-  },
-  {
-    id: 6,
-    nameSubject: 'nameSubject',
-    newfeed: 'newfeed'
-  }
-]
-
-export default class TableSubject extends Component {
+class TableSubject extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,24 +14,34 @@ export default class TableSubject extends Component {
   closeModalUpdate() { this.setState({ isUpdate: false }) }
   showModalUpdate() { this.setState({ isUpdate: true }) }
 
+  componentDidMount() {
+    this.props.fetchDataSubject();
+  }
   render() {
     const { isUpdate } = this.state;
+    const { listData } = this.props;
     return (
       <div>
         <table className="table table-striped table-bordered" cellSpacing="0" width="100%">
           <thead>
             <tr>
               <th style={styles.tdID}>STT</th>
+              <th style={styles.textAlign}>Logo</th>
               <th>Tên môn</th>
+              <th>Tiêu đề</th>
+              <th>Mô tả</th>
               <th style={styles.textAlign}>Hành động</th>
             </tr>
           </thead>
           <tbody>
             {
-              fakeData.map((item, index) =>
+              listData && listData.map((item, index) =>
                 <tr key={index}>
-                  <td style={styles.tdID}>{item.id}</td>
-                  <td>{item.nameSubject}</td>
+                  <td style={styles.tdID}>{index + 1}</td>
+                  <td style={styles.textAlign}><img src={item.logo} style={styles.imgLogo} /></td>
+                  <td>{item.name}</td>
+                  <td>{item.title}</td>
+                  <td>{item.tagline}</td>
                   <td style={styles.textAlign}>
                     <button
                       type="button"
@@ -92,7 +71,7 @@ export default class TableSubject extends Component {
             }
           </tbody>
         </table>
-        <UpdateSubject 
+        <UpdateSubject
           isUpdate={isUpdate}
           closeModalUpdate={() => this.closeModalUpdate()}
         />
@@ -100,6 +79,20 @@ export default class TableSubject extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isRequest: state.SubjectReducer.isRequest,
+    listData: state.SubjectReducer.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchDataSubject: () => dispatch(subjectActions.fetchDataSubject()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableSubject);
+
 const styles = ({
   textAlign: {
     textAlign: 'center',
@@ -111,5 +104,9 @@ const styles = ({
   tdID: {
     textAlign: 'center',
     width: '5%'
+  },
+  imgLogo: {
+    width: 50,
+    height: 50
   }
 })
