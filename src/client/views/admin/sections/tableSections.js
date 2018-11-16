@@ -1,37 +1,21 @@
-import React, { Component } from 'react'
-import UpdateSection from './updateSections'
-const fakeData = [
-  {
-    id: 1,
-    nameSections: 'nameSections'
-  },
-  {
-    id: 2,
-    nameSections: 'nameSections'
-  },
-  {
-    id: 3,
-    nameSections: 'nameSections'
-  },
-  {
-    id: 4,
-    nameSections: 'nameSections'
-  },
-  {
-    id: 5,
-    nameSections: 'nameSections'
-  },
-  {
-    id: 6,
-    nameSections: 'nameSections'
-  }
-]
-export default class TableSections extends Component {
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import UpdateSection from './updateSections';
+import { sectionsActions } from '../../../action/admin/section.action';
+
+class TableSections extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isUpdate: false
     }
+  }
+  fetchData(sections_id = "5bea7c6ef7560822b07f2d37"){
+    this.props.fetchDataFindID(sections_id);
+  }
+  componentDidMount() {
+    this.props.fetchDataSection();
+    this.fetchData();
   }
   /**Update */
   closeModalUpdate() { this.setState({ isUpdate: false }) }
@@ -39,6 +23,8 @@ export default class TableSections extends Component {
 
   render() {
     const { isUpdate } = this.state;
+    const { listData, dataFind } = this.props;
+    console.log('dataFind', dataFind);
     return (
       <div>
         <table className="table table-striped table-bordered" cellSpacing="0" width="100%">
@@ -52,10 +38,10 @@ export default class TableSections extends Component {
           </thead>
           <tbody>
             {
-              fakeData.map((item, index) =>
+              listData && listData.map((item, index) =>
                 <tr key={index}>
-                  <td style={styles.tdID}>{item.id}</td>
-                  <td>{item.nameSections}</td>
+                  <td style={styles.tdID}>{index + 1}</td>
+                  <td>{item.name}</td>
                   <td style={styles.newfeed}>
                     <button
                       type="button"
@@ -102,6 +88,23 @@ export default class TableSections extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isRequest: state.SectionsReducer.isRequest,
+    errMessage: state.SectionsReducer.errMessage,
+    listData: state.SectionsReducer.data,
+    dataFind: state.SectionsReducer.dataFind
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchDataSection: () => dispatch(sectionsActions.fetchDataSection()),
+  fetchDataFindID: (sections_id) => dispatch(sectionsActions.fetchDataFindID(sections_id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableSections);
+
 const styles = ({
   textAlign: {
     textAlign: 'center',
