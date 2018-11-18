@@ -26,6 +26,7 @@ function htmlTemplate(reactDom, url, helmetData) {
 				<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/admin/img/ico/apple-touch-icon-72-precomposed.png">
 				<link rel="apple-touch-icon-precomposed" href="/admin/img/ico/apple-touch-icon-57-precomposed.png">
 				<link rel="icon" href="/admin/favicon.png" type="image/png">
+				<link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css">
 				<meta name="msapplication-TileColor" content="#3399cc" />
   			<title>HT Training</title>
     </head>

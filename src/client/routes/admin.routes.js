@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { DashBoard, NotFound, Sections, Subject } from '../views';
+import { DashBoard, NotFound, Sections, Subject, Posts } from '../views';
 import DrawerMemu from '../components/admin/drawerMenu';
 import Sidebar from '../components/admin/siderBar';
 
@@ -19,6 +19,11 @@ export const routes = [
   {
     path: '/admin/subject',
     component: Subject,
+    exact: false
+  },
+  {
+    path: '/admin/posts/:idSections',
+    component: Posts,
     exact: false
   },
   {

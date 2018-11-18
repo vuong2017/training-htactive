@@ -34,8 +34,8 @@ app.use(express.static('uploads'));
 /** set up middlewares */
 app.use(cors());
 app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
 /** set up routes {API Endpoints} */
 app.use('/api', router);
 routess(router);
