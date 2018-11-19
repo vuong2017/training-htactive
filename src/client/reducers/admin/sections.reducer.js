@@ -4,7 +4,10 @@ const initialState = {
   isRequest: false,
   data: [],
   dataFind: [],
-  errMessage: null
+  errMessage: null,
+  dataAll: [],
+  sectionData: [],
+  dataFindid: [],
 }
 
 export function SectionsReducer(state = initialState, action) {
@@ -59,6 +62,7 @@ export function SectionsReducer(state = initialState, action) {
         state = {
           ...state,
           isRequest: false,
+          sectionData: [...state.sectionData, action.payload.dataCreate],
           errMessage: null
         }
         return state;
@@ -70,8 +74,8 @@ export function SectionsReducer(state = initialState, action) {
         }
         return state;
       }
-    /**DELETE */
-    case actionEnums.DELETE_ITEM_SECTIONS:
+    /**UPDATE */
+    case actionEnums.UPDATE_ITEM_SECTIONS:
       if (action.payload.isSuccess) {
         state = {
           ...state,
@@ -83,9 +87,71 @@ export function SectionsReducer(state = initialState, action) {
         state = {
           ...state,
           isRequest: false,
+          errMessage: action.payload.error
+        }
+        return state;
+      }
+    /**DELETE */
+    case actionEnums.DELETE_ITEM_SECTIONS:
+      if (action.payload.isSuccess) {
+        state = {
+          ...state,
+          isRequest: false,
+          sectionData: state.sectionData.filter(e => e._id !== action.payload.id),
+          errMessage: null
+        }
+        return state;
+      } else {
+        state = {
+          ...state,
+          isRequest: false,
           errMessage: action.payload.message
         }
         return state;
+      }
+    /**SUBJECT */
+    case actionEnums.SUBJECTS_REQUEST:
+      state = {
+        ...state,
+        isRequest: false,
+      }
+      return state;
+    /**GET_SUBJECTS_DATA_FIND_ID */
+    case actionEnums.GET_SUBJECTS_DATA_FIND_ID:
+      if (action.payload.isSuccess) {
+        state = {
+          ...state,
+          isRequest: false,
+          dataFindid: action.payload.data.content,
+          sectionData: action.payload.data.content.sections,
+          errMessage: null
+        }
+        return state;
+      } else {
+        state = {
+          ...state,
+          isRequest: false,
+          dataFindid: [],
+          errMessage: action.payload.error
+        }
+      }
+    /**GET_SUBJECTS_DATA */
+    case actionEnums.GET_SUBJECTS_DATA:
+      if (action.payload.isSuccess) {
+        state = {
+          ...state,
+          isRequest: false,
+          dataAll: action.payload.data.content,
+          errMessage: null
+        }
+        return state;
+      } else {
+        state = {
+          ...state,
+          isRequest: false,
+          dataAll: [],
+          errMessage: action.payload.error
+        }
       }
     default: return state;
   }

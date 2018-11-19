@@ -28,10 +28,38 @@ const deleteSectionsServices = async (data) => {
   }
 }
 
-const getfindIDServies = async (sections_id='5bea7c6ef7560822b07f2d37') => {
+const getfindIDServies = async (sections_id) => {
   try {
     const url = `${baseUrl.Api}/getFindById`;
     return await getTakenData(`${url}?sections_id=${sections_id}`)
+  } catch (e) {
+    throw e;
+  }
+}
+
+const updateSectionServices = async (data) => {
+  try {
+    const url = `${baseUrl.Api}/updateItemSections`;
+    return await postTakenData(url, data)
+  } catch (e) {
+
+  }
+}
+
+/**SUBJECT */
+const getSubjectFindIdServies = async (subjects_id) => {
+  try {
+    const url = `${baseUrl.Api}/subjects`;
+    return await getTakenData(`${url}/${subjects_id}`)
+  } catch (e) {
+    throw e;
+  }
+}
+
+const getSubjectServies = async () => {
+  try {
+    const url = `${baseUrl.Api}/subjects`;
+    return await getTakenData(`${url}`)
   } catch (e) {
     throw e;
   }
@@ -41,5 +69,9 @@ export {
   getSectionsServices,
   postSectionServices,
   deleteSectionsServices,
-  getfindIDServies
+  getfindIDServies,
+  updateSectionServices,
+  /**SUBJECT */
+  getSubjectFindIdServies,
+  getSubjectServies
 }
