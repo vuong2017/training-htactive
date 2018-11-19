@@ -11,7 +11,7 @@ class SideBar extends React.Component{
             <aside className="sidebar sidebar-left" id="sidebar-left">
                 <div className="mini-logo">
                     <a href="https://www.tutorialspoint.com/assets/videos/courses/251/images/course_251_image.png">
-                        <img src={data.logo} alt={data.title} />
+                        <img src={`/uploads/${data.logo}`} alt={data.title} />
                         <div className="crs-left-title" style={{ background: "#02b6d7" }}>
                             <div>{data.title}</div>
                         </div>
