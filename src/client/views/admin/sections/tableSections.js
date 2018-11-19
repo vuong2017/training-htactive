@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 import UpdateSection from './updateSections';
 import { sectionsActions } from '../../../action/admin/section.action';
 
@@ -45,7 +47,7 @@ class TableSections extends Component {
     const { sectionData, dataSubject } = this.props;
     return (
       <div>
-        <div className='col-sm-2'>
+        <div className='col-sm-2' style={{paddingLeft: '0px'}} >
           <select
             className="form-control"
             value={this.state._id}
@@ -74,13 +76,15 @@ class TableSections extends Component {
                   <td style={styles.tdID}>{index + 1}</td>
                   <td>{item.name}</td>
                   <td style={styles.newfeed}>
-                    <button
-                      type="button"
-                      className="btn btn-success btn-sm"
-                      style={styles.btnActions}
-                    >
-                      <span className="glyphicon glyphicon-edit"></span>
-                    </button>
+                    <Link to={`posts/${item._id}`}>
+                      <button
+                        type="button"
+                        className="btn btn-success btn-sm"
+                        style={styles.btnActions}
+                      >
+                        <span className="glyphicon glyphicon-list-alt"></span>
+                      </button>
+                    </Link>
                   </td>
                   <td style={styles.textAlign}>
                     <button

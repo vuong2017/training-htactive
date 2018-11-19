@@ -90,7 +90,7 @@ const getSelect = async (req, res, next) => {
 
 const insertSubjects = async (req, res) => {
   try {
-    const fileName = req.file ? req.file.originalname : '';
+    const fileName = req.file ? req.file.filename : '';
     req.body.logo = fileName;
     const insertData = await new Subjects(req.body);
     const result = await insertData.save();
@@ -101,28 +101,33 @@ const insertSubjects = async (req, res) => {
         messages: 'Thêm Mới Thành Công'
       };
       return res.status(200).json(data);
+    } else {
+      throw { status: false, messages: "Không tìm thấy dữ liệu Subjects" };
     }
-  } catch (err) {
+  } catch (error) {
     const data = {
-      status: false,
+      status: false
     };
-    if (err.name === 'MongoError') {
-      return res.status(500).json(data.messages = 'Internal Server Error');
+    if (error.name === "CastError") {
+      data.messages = "Không tìm thấy id";
+      return res.status(404).json(data);
     }
-    res.status(401).json({
-      status: false,
-      data: [],
-      messages: err
-    });
+    if (error.name === "MongoError") {
+      data.messages = "Internal Server Error";
+      return res.status(500).json(data);
+    }
+    return res.status(401).json(error);
   }
 };
 
 const updateSubjects = async (req, res) => {
   try {
-    const fileName = req.file ? req.file.originalname : '';
-    req.body.logo = fileName;
+    if(req.file) {
+      const fileName = req.file.filename;
+      req.body.logo = fileName;
+    }
     const result = await Subjects.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.body.id },
       { $set: req.body },
       { new: true }
     );
@@ -133,45 +138,67 @@ const updateSubjects = async (req, res) => {
         messages: 'Cập Nhật Thành Công'
       };
       return res.status(200).json(data);
+    } else {
+      throw { status: false, messages: "Không tìm thấy dữ liệu Subjects" };
     }
-  } catch (err) {
+  } catch (error) {
     const data = {
-      status: false,
+      status: false
     };
-    if (err.name === 'MongoError') {
-      return res.status(500).json(data.messages = 'Internal Server Error');
+    if (error.name === "CastError") {
+      data.messages = "Không tìm thấy id";
+      return res.status(404).json(data);
     }
-    res.status(401).json({
-      status: false,
-      data: [],
-      messages: err
-    });
+    if (error.name === "MongoError") {
+      data.messages = "Internal Server Error";
+      return res.status(500).json(data);
+    }
+    return res.status(401).json(error);
   }
 };
 
 const deleteSubjects = async (req, res) => {
   try {
-    const result = await Subjects.findOneAndRemove({ _id: req.params.id });
+    const result = await Subjects.findOneAndRemove({ _id: req.body.id });
     if (result) {
+      if (result.sections.length !== 0) {
+        const deleteChildren = await new Promise(async resolve => {
+          result.sections.map(async (e, i) => {
+            const deleteSections = await Sections.findOneAndRemove({_id: e});
+            if (deleteSections.posts.length !== 0) {
+              const deletePosts =  await new Promise(async resolve => {
+                const kq = deleteSections.posts.map(async (e, i) => {
+                  await Posts.findOneAndRemove({_id: e})
+                  resolve()
+                })
+              })
+            }
+            resolve()
+          })
+        })
+      }
       const data = {
         status: true,
         content: result,
         messages: 'Xóa Thành Công'
       };
       return res.status(200).json(data);
+    } else {
+      throw { status: false, messages: "Không tìm thấy dữ liệu Subjects" };
     }
   } catch (err) {
     const data = {
-      status: false,
+      status: false
     };
-    if (err.name === 'MongoError') {
-      return res.status(500).json(data.messages = 'Internal Server Error');
+    if (error.name === "CastError") {
+      data.messages = "Không tìm thấy id";
+      return res.status(404).json(data);
     }
-    res.status(401).json({
-      status: false,
-      data: [],
-      messages: err
-    });
+    if (error.name === "MongoError") {
+      data.messages = "Internal Server Error";
+      return res.status(500).json(data);
+    }
+    return res.status(401).json(error);
   }
 };
 

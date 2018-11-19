@@ -21,12 +21,12 @@ function htmlTemplate(reactDom, url, helmetData) {
 				<link href="/admin/css/plugins.css" rel="stylesheet" />
 				<link href="/admin/css/main.css" rel="stylesheet" />
 				<link href="/admin/css/custom.css" rel="stylesheet" />
+				<link href="/admin/css/quill.snow.css" rel="stylesheet" />
 				<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/admin/img/ico/apple-touch-icon-144-precomposed.png">
 				<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/admin/img/ico/apple-touch-icon-114-precomposed.png">
 				<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/admin/img/ico/apple-touch-icon-72-precomposed.png">
 				<link rel="apple-touch-icon-precomposed" href="/admin/img/ico/apple-touch-icon-57-precomposed.png">
 				<link rel="icon" href="/admin/favicon.png" type="image/png">
-				<link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css">
 				<meta name="msapplication-TileColor" content="#3399cc" />
   			<title>HT Training</title>
     </head>
@@ -160,8 +160,8 @@ function htmlTemplate(reactDom, url, helmetData) {
         ${helmetData.title.toString()}
         ${helmetData.meta.toString()}
         <meta charset="utf-8">
-        <title>ReactJS Online Training</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+        <title>Traing</title>
+				<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="https://www.tutorialspoint.com/videotutorials/opensearch.xml">
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -173,7 +173,7 @@ function htmlTemplate(reactDom, url, helmetData) {
         <script src="/client/js/jquery.js"></script>
         <script src="/client/js/tp-custom.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/client/css/custom.css">
-        <script src="/client/js/jquery-ui.js"></script>
+				<script src="/client/js/jquery-ui.js"></script>
     </head>
     
     <body>

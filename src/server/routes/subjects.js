@@ -46,6 +46,6 @@ export default (router) => {
   router.get('/subjects/:id', getSubjectsJoin);
   router.get('/search', getSelect);
   router.post('/subjects', upload.single('logo'), insertSubjects);
-  router.post('/subjects/update/:id', upload.single('logo'), updateSubjects);
-  router.delete('/subjects/:id', deleteSubjects);
+  router.post('/subjects/update', upload.single('logo'), updateSubjects);
+  router.post('/subjects/delete', deleteSubjects);
 };

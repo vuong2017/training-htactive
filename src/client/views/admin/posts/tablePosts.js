@@ -14,11 +14,6 @@ class TablePosts extends Component {
     };
   }
 
-  componentDidMount() {
-    const { idSections } = this.props.match.params;
-    this.props.fetchDataPosts(idSections);
-  }
-
   /**Update */
   closeModalUpdate() {
     this.setState({ isUpdate: false });
@@ -128,8 +123,6 @@ const mapStateToProps = ({ PostsReducer }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchDataPosts: idSections =>
-    dispatch(postsActions.fetchDataPosts(idSections)),
   deleteItemPosts: _id => dispatch(postsActions.deleteItemPosts(_id))
 });
 
