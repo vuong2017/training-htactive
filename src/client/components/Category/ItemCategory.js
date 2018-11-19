@@ -7,7 +7,7 @@ function ItemCategory({ item }) {
       <div className="col-md-3">
         <div className="course-box">
           <Link target="_top" to={`${item._id}`} title={item.title}>
-            <img src={item.logo} alt={item.name} />
+            <img src={`/uploads/${item.logo}`} alt={item.name} />
             <div className="text-center name-item">{item.name}</div>
           </Link>
         </div>
