@@ -3,7 +3,11 @@ import {
   getSectionsServices,
   postSectionServices,
   deleteSectionsServices,
-  getfindIDServies
+  getfindIDServies,
+  updateSectionServices,
+  /**SUBJECT */
+  getSubjectFindIdServies,
+  getSubjectServies
 } from '../../services/admin/section.services';
 
 const sectionRequest = () => {
@@ -44,12 +48,23 @@ const createSection = (isSuccess, dataCreate) => {
   }
 }
 
-const deleteSection = (isSuccess, dataDelete, message) => {
+const deleteSection = (isSuccess, id, message) => {
   return {
     type: actionEnums.DELETE_ITEM_SECTIONS,
     payload: {
       isSuccess,
-      dataDelete,
+      id,
+      message
+    }
+  }
+}
+
+const updateSection = (isSuccess, dataUpdate, message) => {
+  return {
+    type: actionEnums.UPDATE_ITEM_SECTIONS,
+    payload: {
+      isSuccess,
+      dataUpdate,
       message
     }
   }
@@ -87,7 +102,7 @@ const createItemSection = (data) => async (dispatch) => {
   try {
     const result = await postSectionServices(data);
     if (result) {
-      dispatch(createSection(true, null));
+      dispatch(createSection(true, result.data.data, null));
     }
   } catch (e) {
     dispatch(createSection(false, null, e.response ? 'Err 1' : 'Err 2'));
@@ -98,10 +113,80 @@ const deleteItemSection = (data) => async (dispatch) => {
   try {
     const result = await deleteSectionsServices(data);
     if (result) {
-      dispatch(deleteSection(true, result));
+      dispatch(deleteSection(true, result.data.data._id));
     }
   } catch (e) {
     dispatch(deleteSection(false, null, e.response ? 'ERR 1' : 'ERR 2'));
+  }
+}
+
+const updateItemsSection = (data) => async (dispatch, reloading) => {
+  try {
+    const result = await updateSectionServices(data);
+    if (result) {
+      dispatch(updateSection(true, null));
+      dispatch(fetchDataSection(reloading().SectionsReducer));
+      dispatch(fetchDataSubject(reloading().SectionsReducer));
+    }
+  } catch (e) {
+    dispatch(updateSection(false, null, e.response ? 'Err 1' : 'Err 2'));
+  }
+}
+
+/**SUBJECT */
+const subjectRequest = () => {
+  return {
+    type: actionEnums.SUBJECTS_REQUEST
+  }
+}
+
+const getSubject = (isSuccess, data, error) => {
+  return {
+    type: actionEnums.GET_SUBJECTS_DATA,
+    payload: {
+      isSuccess,
+      data,
+      error
+    }
+  }
+}
+
+const getSubjectFindId = (isSuccess, data, error) => {
+  return {
+    type: actionEnums.GET_SUBJECTS_DATA_FIND_ID,
+    payload: {
+      isSuccess,
+      data,
+      error
+    }
+  }
+}
+
+const fetchDataFindIdSubject = (subjects_id) => {
+  return async (dispatch) => {
+    dispatch(subjectRequest());
+    try {
+      const result = await getSubjectFindIdServies(subjects_id);
+      if (result) {
+        dispatch(getSubjectFindId(true, result, null));
+      }
+    } catch (e) {
+      dispatch(getSubjectFindId(false, null, e.response ? 'Error 1' : 'Error 2'));
+    }
+  }
+}
+
+const fetchDataSubject = () => {
+  return async (dispatch) => {
+    dispatch(subjectRequest());
+    try {
+      const result = await getSubjectServies();
+      if (result) {
+        dispatch(getSubject(true, result, null));
+      }
+    } catch (e) {
+      dispatch(getSubject(false, null, e.response ? 'Error 1' : 'Error 2'));
+    }
   }
 }
 
@@ -109,5 +194,9 @@ export const sectionsActions = {
   fetchDataSection,
   createItemSection,
   deleteItemSection,
-  fetchDataFindID
+  fetchDataFindID,
+  updateItemsSection,
+  /**SUBJECT */
+  fetchDataFindIdSubject,
+  fetchDataSubject
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UpdateSubject from './updateSubject';
-import { subjectActions } from '../../../action/admin/subject.action';
+// import { subjectActions } from '../../../action/admin/subject.action';
 
 class TableSubject extends Component {
   constructor(props) {
@@ -35,39 +35,39 @@ class TableSubject extends Component {
           </thead>
           <tbody>
             {
-              listData && listData.map((item, index) =>
-                <tr key={index}>
-                  <td style={styles.tdID}>{index + 1}</td>
-                  <td style={styles.textAlign}><img src={item.logo} style={styles.imgLogo} /></td>
-                  <td>{item.name}</td>
-                  <td>{item.title}</td>
-                  <td>{item.tagline}</td>
-                  <td style={styles.textAlign}>
-                    <button
-                      type="button"
-                      className="btn btn-default btn-sm"
-                      style={styles.btnActions}
-                    >
-                      <span className="glyphicon glyphicon-eye-open"></span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-success btn-sm"
-                      onClick={() => this.showModalUpdate()}
-                      style={styles.btnActions}
-                    >
-                      <span className="glyphicon glyphicon-edit"></span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger btn-sm"
-                      style={styles.btnActions}
-                    >
-                      <span className="glyphicon glyphicon-trash"></span>
-                    </button>
-                  </td>
-                </tr>
-              )
+              // listData && listData.map((item, index) =>
+              //   <tr key={index}>
+              //     <td style={styles.tdID}>{index + 1}</td>
+              //     <td style={styles.textAlign}><img src={item.logo} style={styles.imgLogo} /></td>
+              //     <td>{item.name}</td>
+              //     <td>{item.title}</td>
+              //     <td>{item.tagline}</td>
+              //     <td style={styles.textAlign}>
+              //       <button
+              //         type="button"
+              //         className="btn btn-default btn-sm"
+              //         style={styles.btnActions}
+              //       >
+              //         <span className="glyphicon glyphicon-eye-open"></span>
+              //       </button>
+              //       <button
+              //         type="button"
+              //         className="btn btn-success btn-sm"
+              //         onClick={() => this.showModalUpdate()}
+              //         style={styles.btnActions}
+              //       >
+              //         <span className="glyphicon glyphicon-edit"></span>
+              //       </button>
+              //       <button
+              //         type="button"
+              //         className="btn btn-danger btn-sm"
+              //         style={styles.btnActions}
+              //       >
+              //         <span className="glyphicon glyphicon-trash"></span>
+              //       </button>
+              //     </td>
+              //   </tr>
+              // )
             }
           </tbody>
         </table>
