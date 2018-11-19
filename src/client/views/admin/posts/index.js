@@ -23,6 +23,8 @@ class Posts extends Component {
 
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
+    const { idSections } = this.props.match.params;
+    this.props.fetchDataPosts(idSections);
   }
 
   handleClose() {
@@ -144,6 +146,7 @@ const mapStateToProps = ({ PostsReducer }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
+  fetchDataPosts: idSections => dispatch(postsActions.fetchDataPosts(idSections)),
   setCurrentPage: page => dispatch(postsActions.setCurrentPagePosts(page)),
   setPerPage: perPage => dispatch(postsActions.setPerPagePosts(perPage)),
 })

@@ -18,7 +18,7 @@ export function PostsReducer(state = initialState, action) {
     case actionEnums.GET_POSTS_REQUEST:
       state = {
         ...state,
-        isRequest: false
+        isRequest: true
       };
       return state;
 
@@ -28,6 +28,7 @@ export function PostsReducer(state = initialState, action) {
         state = {
           ...state,
           isRequest: false,
+          status: true,
           data: action.payload.data.content,
           messages: action.payload.data.messages
         };
@@ -36,7 +37,7 @@ export function PostsReducer(state = initialState, action) {
         state = {
           ...state,
           isRequest: false,
-          data: [],
+          status: false,
           messages: action.payload.data.messages
         };
         return state;
