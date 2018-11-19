@@ -71,7 +71,7 @@ class Subjects extends Component {
           <div className="page-content-inner">
             <div className="clearfix">
               <div className="page-header">
-                <h3>Quản Lý Bài Viết</h3>
+                <h3>Quản Lý Môn Học</h3>
               </div>
             </div>
             <div className="row" style={{ marginTop: 20 }}>
