@@ -13,15 +13,6 @@ class ModalSections extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { isRequest } = nextProps;
-    if (isRequest) {
-      this.setState({
-        isRequest: nextProps.isRequest
-      })
-    }
-  }
-
   async insertSection() {
     this.setState({ isSubmit: true })
     const { listdataSubject } = this.props;
@@ -32,11 +23,16 @@ class ModalSections extends Component {
       _id: _id || _id_render
     };
     if (name) {
-      await this.props.createItemSection(data);
-      if (!this.state.isRequest) {
-        this.props.handleClose()
-        this.handleReset()
-      }
+      await this.props.createItemSection(data).then(() => {
+        const { status, isRequest, messages } = this.props
+        if (!isRequest && status) {
+            this.props.addNotification(status, messages)
+            this.props.handleClose()
+            this.handleReset()
+        } else {
+            this.props.addNotification(status, messages)
+        }
+      }) // add;
     }
   }
 
@@ -110,6 +106,7 @@ class ModalSections extends Component {
       </Modal>
     )
   }
+
   handleReset() {
     this.setState({
       name: '',
@@ -120,6 +117,8 @@ class ModalSections extends Component {
 const mapStateToProps = (state) => {
   return {
     isRequest: state.SectionsReducer.isRequest,
+    messages: state.SectionsReducer.messages,
+    status: state.SectionsReducer.status,
     listdataSubject: state.SectionsReducer.dataAll
   }
 }

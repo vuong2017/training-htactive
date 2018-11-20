@@ -38,12 +38,12 @@ const getSectionsFindId = (isSuccess, data, error) => {
   }
 }
 
-const createSection = (isSuccess, dataCreate) => {
+const createSection = (isSuccess, data) => {
   return {
     type: actionEnums.CREATE_DATA_SECTIONS,
     payload: {
       isSuccess,
-      dataCreate
+      data
     }
   }
 }
@@ -101,11 +101,12 @@ const fetchDataFindID = (sections_id) => {
 const createItemSection = (data) => async (dispatch) => {
   try {
     const result = await postSectionServices(data);
-    if (result) {
-      dispatch(createSection(true, result.data.data, null));
+    if (result.data) {
+      dispatch(createSection(true, result.data));
     }
   } catch (e) {
-    dispatch(createSection(false, null, e.response ? 'Err 1' : 'Err 2'));
+    const error = e.response ? e.response.data : { message: "Network Error" };
+    dispatch(createSection(false, error))
   }
 }
 

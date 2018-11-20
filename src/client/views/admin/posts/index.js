@@ -43,28 +43,30 @@ class Posts extends Component {
     });
   }
 
-  countItems(items,currentPage,perPage,sumItems){
+  countItems(items, currentPage, perPage, sumItems) {
     var no = (currentPage + 1) * perPage - perPage;
     var result = []
     var data = [...items]
-    data.map(()=> {
-        no += 1
-        result.push(no)
+    data.map(() => {
+      no += 1
+      result.push(no)
     })
-    return `${result[0] || 0} - ${result[data.length-1] || 0} of ${sumItems}`;
+    return `${result[0] || 0} - ${result[data.length - 1] || 0} of ${sumItems}`;
   }
 
   render() {
     const { isModal } = this.state;
-    const { 
-      listData, 
-      sumItems, 
-      setCurrentPage, 
-      setPerPage, 
-      totalPage, 
-      currentPage, 
-      perPage, 
-      dataSort 
+    const {
+      isRequest,
+      status,
+      listData,
+      sumItems,
+      setCurrentPage,
+      setPerPage,
+      totalPage,
+      currentPage,
+      perPage,
+      dataSort
     } = this.props
     return (
       <div className="page-content sidebar-page clearfix">
@@ -75,46 +77,51 @@ class Posts extends Component {
                 <h3>Quản Lý Bài Viết</h3>
               </div>
             </div>
-            <div className="row" style={{ marginTop: 20 }}>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => this.handleShow()}
-                style={styles.btnNewMember}
-              >
-                <i className="fa fa-plus-square" /> Thêm Mới
-              </button>
-              <div className="col-lg-12" style={styles.divTable}>
-                <div className="panel panel-default">
-                  <div className="panel-body">
-                    <TablePosts 
-                      listData={listData}
-                      currentPage={currentPage}
-                      perPage={perPage}
-                      addNotification={this.addNotification} 
-                    />
-                    <div className="row">
-                      <div className="col-sm-2 prePage-xs">
-                        {this.countItems(listData, currentPage, perPage, sumItems)}
-                      </div>
-                      <div className="col-sm-10">
-                        <PaginationTable>
-                          <ShowPerPage
-                            setPerPage={setPerPage}
-                            perPage={perPage}
-                          />
-                          <Pagination
-                            handleClickPage={setCurrentPage}
-                            totalPage={totalPage}
+            {isRequest
+              ? <h1>Đang Loading...</h1>
+              : <React.Fragment>
+                  <div className="row" style={{ marginTop: 20 }}>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => this.handleShow()}
+                      style={styles.btnNewMember}
+                    >
+                      <i className="fa fa-plus-square" /> Thêm Mới
+                  </button>
+                    <div className="col-lg-12" style={styles.divTable}>
+                      <div className="panel panel-default">
+                        <div className="panel-body">
+                          <TablePosts
+                            listData={listData}
                             currentPage={currentPage}
+                            perPage={perPage}
+                            addNotification={this.addNotification}
                           />
-                        </PaginationTable>
+                          <div className="row">
+                            <div className="col-sm-2 prePage-xs">
+                              {this.countItems(listData, currentPage, perPage, sumItems)}
+                            </div>
+                            <div className="col-sm-10">
+                              <PaginationTable>
+                                <ShowPerPage
+                                  setPerPage={setPerPage}
+                                  perPage={perPage}
+                                />
+                                <Pagination
+                                  handleClickPage={setCurrentPage}
+                                  totalPage={totalPage}
+                                  currentPage={currentPage}
+                                />
+                              </PaginationTable>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </React.Fragment>
+            }
           </div>
         </div>
         {isModal && (
@@ -134,11 +141,11 @@ const mapStateToProps = ({ PostsReducer }) => {
   return {
     isRequest: PostsReducer.isRequest,
     PostsItems: PostsReducer.data.posts,
-    listData: ShowItemsPagination(PostsReducer.data.posts || [],PostsReducer.currentPage,PostsReducer.perPage),
+    listData: ShowItemsPagination(PostsReducer.data.posts || [], PostsReducer.currentPage, PostsReducer.perPage),
     messages: PostsReducer.messages,
     status: PostsReducer.status,
     sumItems: PostsReducer.data.posts ? PostsReducer.data.posts.length : 0,
-    totalPage: ShowTotalPage(PostsReducer.data.posts || [],PostsReducer.perPage),
+    totalPage: ShowTotalPage(PostsReducer.data.posts || [], PostsReducer.perPage),
     currentPage: PostsReducer.currentPage,
     perPage: PostsReducer.perPage,
     dataSort: PostsReducer.sortBy,

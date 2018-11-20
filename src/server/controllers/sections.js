@@ -42,36 +42,46 @@ const getFindById = async (req, res, next) => {
   })
 }
 
-const insertItemSections = async (req, res, next) => {
-  const newData = new Sections({
-    _id: new mongoose.mongo.ObjectId(),
-    name: req.body.name,
-  })
-  newData.save((err, items) => {
-    if (err) return console.log(err);
-    Subjects.findOne({ _id: req.body._id })
-      .exec((err, docs) => {
-        if (err) return console.log(err)
-        docs.sections = [...docs.sections, newData._id];
-        docs.save((err) => {
-          if (!err) {
-            res.json({
-              status: true,
-              data: items,
-              count: items.length,
-              messages: 'insert data success !'
-            })
-          } else {
-            res.json({
-              status: false,
-              data: [],
-              messages: 'get data success !'
-            })
-          }
-        })
-      })
-  });
-}
+const insertItemSections = async (req, res) => {
+  try {
+    const findUpdateSubjects = await Subjects.findOne({
+      _id: req.body._id
+    });
+    if (findUpdateSubjects) {
+      const _id = new mongoose.mongo.ObjectId();
+      findUpdateSubjects.sections = [...findUpdateSubjects.sections, _id];
+      await findUpdateSubjects.save();
+      const insertData = await new Sections({
+        _id: _id,
+        name: req.body.name,
+      });
+      const result = await insertData.save();
+      if (result) {
+        const data = {
+          status: true,
+          content: result,
+          messages: "Thêm Thành Công"
+        };
+        return res.status(200).json(data);
+      }
+    } else {
+      throw { status: false, messages: "Không tìm thấy dữ liệu Môn Học" };
+    }
+  } catch (error) {
+    const data = {
+      status: false
+    };
+    if (error.name === "CastError") {
+      data.messages = "Không tìm thấy id";
+      return res.status(404).json(data);
+    }
+    if (error.name === "MongoError") {
+      data.messages = "Internal Server Error";
+      return res.status(500).json(data);
+    }
+    return res.status(401).json(error);
+  }
+};
 
 const updateItemSections = async (req, res, next) => {
   const conditions = {};

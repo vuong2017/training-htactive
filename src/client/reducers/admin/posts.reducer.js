@@ -1,7 +1,7 @@
 import { actionEnums } from "../../action/admin-action-enum";
 
 const initialState = {
-  isRequest: false,
+  isRequest: true,
   data: {},
   status: false,
   messages: null,
@@ -29,6 +29,7 @@ export function PostsReducer(state = initialState, action) {
           ...state,
           isRequest: false,
           status: true,
+          currentPage: 0,
           data: action.payload.data.content,
           messages: action.payload.data.messages
         };
@@ -103,7 +104,7 @@ export function PostsReducer(state = initialState, action) {
       if (action.payload.isSuccess) {
         return {
           ...state,
-          isRequest: true,
+          isRequest: false,
           data: {
             ...state.data,
             posts: state.data.posts.filter(

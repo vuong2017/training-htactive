@@ -2,9 +2,11 @@ import { actionEnums } from '../../action/admin-action-enum';
 
 const initialState = {
   isRequest: false,
+  status:false,
   data: [],
   dataFind: [],
   errMessage: null,
+  messages: null,
   dataAll: [],
   sectionData: [],
   dataFindid: [],
@@ -15,7 +17,7 @@ export function SectionsReducer(state = initialState, action) {
     case actionEnums.GET_SECTiONS_REQUEST:
       state = {
         ...state,
-        isRequest: false
+        isRequest: true
       }
       return state;
     /**GET */
@@ -25,6 +27,7 @@ export function SectionsReducer(state = initialState, action) {
           ...state,
           isRequest: false,
           data: action.payload.data.data,
+          status:true,
           errMessage: null
         }
         return state;
@@ -33,6 +36,7 @@ export function SectionsReducer(state = initialState, action) {
           ...state,
           isRequest: false,
           data: [],
+          status:false,
           errMessage: action.payload.error
         }
         return state;
@@ -62,15 +66,17 @@ export function SectionsReducer(state = initialState, action) {
         state = {
           ...state,
           isRequest: false,
-          sectionData: [...state.sectionData, action.payload.dataCreate],
-          errMessage: null
+          status: true,
+          sectionData: [...state.sectionData, action.payload.data.content],
+          messages: action.payload.data.messages
         }
         return state;
       } else {
         state = {
           ...state,
+          status: false,
           isRequest: false,
-          errMessage: action.payload.errMessage
+          messages: action.payload.data.messages
         }
         return state;
       }
@@ -132,6 +138,7 @@ export function SectionsReducer(state = initialState, action) {
           ...state,
           isRequest: false,
           dataFindid: [],
+          sectionData: [],
           errMessage: action.payload.error
         }
       }
