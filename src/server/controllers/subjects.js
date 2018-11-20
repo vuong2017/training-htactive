@@ -18,7 +18,8 @@ const getSubjects = async (req, res) => {
     const data = {
       status: false,
     };
-    return res.status(500).json(data.messages = 'Internal Server Error');
+    data.messages = 'Internal Server Error'
+    return res.status(500).json(data);
   }
 };
 
@@ -49,7 +50,8 @@ const getSubjectsJoin = async (req, res) => {
     const data = {
       status: false,
     };
-    return res.status(500).json(data.messages = 'Internal Server Error');
+    data.messages = 'Internal Server Error'
+    return res.status(500).json(data);
   }
 };
 

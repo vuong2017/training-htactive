@@ -11,8 +11,8 @@ class Sidebar extends Component {
     return (
       <div id="header" className="page-navbar">
         <a className="navbar-brand hidden-xs hidden-sm" style={{ cursor: 'pointer' }} onClick={()=>this.reset()}>
-          <img src="img/logo.png" className="logo hidden-xs" alt="HT Active" />
-          <img src="img/logosm.png" className="logo-sm hidden-lg hidden-md" alt="HT Active" />
+          <img src="/admin/img/logo.png" className="logo hidden-xs" alt="HT Active" />
+          <img src="/admin/img/logosm.png" className="logo-sm hidden-lg hidden-md" alt="HT Active" />
         </a>
         <div id="navbar-no-collapse" className="navbar-no-collapse">
           <ul className="nav navbar-nav">

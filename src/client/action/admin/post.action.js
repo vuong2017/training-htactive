@@ -52,6 +52,7 @@ const deletePosts = (isSuccess, data) => {
     }
   }
 }
+
 // Get Data
 const fetchDataPosts = idSections => {
   return async (dispatch) => {
@@ -70,7 +71,7 @@ const fetchDataPosts = idSections => {
 // Create Data
 const createItemPosts = data => {
   return async (dispatch) => {
-    dispatch(postsRequest());
+    // dispatch(postsRequest());
     try {
       const result = await addPostsServices(data);
       if (result.data) {
@@ -85,7 +86,7 @@ const createItemPosts = data => {
 // Update Data
 const updateItemPosts = data => {
   return async (dispatch) => {
-    dispatch(postsRequest());
+    // dispatch(postsRequest());
     try {
       const result = await updatePostsServices(data);
       if (result.data) {
@@ -100,7 +101,7 @@ const updateItemPosts = data => {
 // Delete Data
 const deleteItemPosts = (data) => {
   return async (dispatch) => {
-    dispatch(postsRequest());
+    // dispatch(postsRequest());
     try {
       const result = await deletePostsServices(data);
       if (result.data) {
@@ -145,5 +146,5 @@ export const postsActions = {
   deleteItemPosts,
   setCurrentPagePosts,
   setPerPagePosts,
-  sortByPosts
+  sortByPosts,
 }

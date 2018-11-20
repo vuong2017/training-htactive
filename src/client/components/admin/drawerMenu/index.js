@@ -12,7 +12,7 @@ class DrawerMemu extends Component {
               <h5 className="sidebar-panel-title">Quản trị</h5>
             </div>
             <div className="user-info clearfix">
-              <img src="img/avatars/128.jpg" alt="avatar" style={{ width: 64, height: 64 }} />
+              <img src="https://www.mobafire.com/images/avatars/yasuo-classic.png" alt="avatar" style={{ width: 64, height: 64 }} />
               <span className="name" style={{ fontSize: 12 }}>HT Active</span>
               <div className="btn-group">
                 <button type="button" className="btn btn-default btn-xs"><i className="l-basic-gear"></i>
@@ -40,20 +40,20 @@ class DrawerMemu extends Component {
             <div className="side-nav">
               <ul className="nav">
                 <li>
-                  <a onClick={() => this.props.history.push('/admin')}>
-                    <i className="fa fa-graduation-cap"></i>
+                  <a style={{cursor: 'pointer'}} onClick={() => this.props.history.push('/admin')}>
+                    <i style={{ width: '10%'}} className="fa fa-graduation-cap"></i>
                     <span className="txt">Tổng quan</span>
                   </a>
                 </li>
                 <li>
-                  <a onClick={() => this.props.history.push('/admin/subject')}>
-                    <i className="fa fa-bookmark"></i>
+                  <a style={{cursor: 'pointer'}} onClick={() => this.props.history.push('/admin/subject')}>
+                    <i style={{ width: '10%'}} className="fa fa-bookmark"></i>
                     <span className="txt">Danh sách môn học</span>
                   </a>
                 </li>
                 <li>
-                  <a onClick={() => this.props.history.push('/admin/sections')}>
-                    <i className="fa fa-book"></i>
+                  <a style={{cursor: 'pointer'}} onClick={() => this.props.history.push('/admin/sections')}>
+                    <i style={{ width: '10%'}} className="fa fa-book"></i>
                     <span className="txt">Phân loại môn học</span>
                   </a>
                 </li>

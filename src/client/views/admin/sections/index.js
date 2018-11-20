@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import NotificationSystem from "react-notification-system";
+
 import TableSections from './tableSections';
-import ModalSubject from './modalSections';
+import ModalSections from './modalSections';
 
 class Sections extends Component {
   constructor(props) {
@@ -9,7 +11,13 @@ class Sections extends Component {
     this.state = {
       isModal: false
     }
+    this.addNotification = this.addNotification.bind(this);
   }
+
+  componentDidMount() {
+    this._notificationSystem = this.refs.notificationSystem;
+  }
+
   handleClose() {
     this.setState({ isModal: false });
   }
@@ -17,6 +25,15 @@ class Sections extends Component {
   handleShow() {
     this.setState({ isModal: true });
   }
+
+  addNotification(status, messages) {
+    this._notificationSystem.addNotification({
+      title: status ? "Success" : "Fail",
+      message: messages,
+      level: status ? "success" : "error"
+    });
+  }
+
   render() {
     const { isModal } = this.state;
     return (
@@ -47,15 +64,25 @@ class Sections extends Component {
             </div>
           </div>
         </div>
-        <ModalSubject
+        <ModalSections
           isModal={isModal}
           handleClose={() => this.handleClose()}
+          addNotification={this.addNotification} 
         />
+        <NotificationSystem ref="notificationSystem" />
       </div>
     )
   }
 }
-export default connect(null)(Sections);
+
+const mapStateToProps = (state) => {
+  return {
+    isRequest: state.SectionsReducer.isRequest,
+    status: state.SectionsReducer.status,
+  };
+};
+
+export default connect(mapStateToProps)(Sections);
 
 const styles = ({
   textAlign: {
