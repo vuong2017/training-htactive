@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
-import { withRouter } from "react-router";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Modal, Button } from "react-bootstrap"
+import { withRouter } from "react-router"
 
-import { subjectsActions } from "../../../action/admin/subject.action";
+import { subjectsActions } from "../../../action/admin/subject.action"
 
 class ModalSubjects extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: {
         title: "",
@@ -16,21 +16,21 @@ class ModalSubjects extends Component {
         logo:""
       },
       errors: {}
-    };
-    this.insertSubjects = this.insertSubjects.bind(this);
-    this.handleChangeFiles = this.handleChangeFiles.bind(this);
-    this.handleChangeInput = this.handleChangeInput.bind(this);
+    }
+    this.insertSubjects = this.insertSubjects.bind(this)
+    this.handleChangeFiles = this.handleChangeFiles.bind(this)
+    this.handleChangeInput = this.handleChangeInput.bind(this)
   }
 
   insertSubjects() {
-    const { data: { name, title, tagline, logo} } = this.state;
+    const { data: { name, title, tagline, logo} } = this.state
     const data = {
       name,
       title,
       tagline,
       logo,
     }
-    const errors = this.checkEmpty(data);
+    const errors = this.checkEmpty(data)
     if (Object.keys(errors).length === 0) {
       return this.props.createItemSubjects(data).then(() => {
           const { status, isRequest, messages } = this.props
@@ -64,16 +64,16 @@ class ModalSubjects extends Component {
   }
 
   checkEmpty(data) {
-    const errors = {};
-    if (!data.title) errors.title = "Không được để trống tiêu đề!";
-    if (!data.tagline) errors.tagline = "Không được để trống tag line!";
-    if (!data.name) errors.name = "Không được để trống tên môn!";
-    if (!data.logo) errors.logo = "Không được để trống logo!";
-    return errors;
+    const errors = {}
+    if (!data.title) errors.title = "Không được để trống tiêu đề!"
+    if (!data.tagline) errors.tagline = "Không được để trống tag line!"
+    if (!data.name) errors.name = "Không được để trống tên môn!"
+    if (!data.logo) errors.logo = "Không được để trống logo!"
+    return errors
   }
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors } = this.state
     return (
       <React.Fragment>
         <Modal
@@ -158,7 +158,7 @@ class ModalSubjects extends Component {
           </Modal.Footer>
         </Modal>
       </React.Fragment>
-    );
+    )
   }
 }
 
@@ -167,19 +167,19 @@ const mapStateToProps = ({ SubjectsReducer }) => {
     isRequest: SubjectsReducer.isRequest,
     status: SubjectsReducer.status,
     messages: SubjectsReducer.messages
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   createItemSubjects: data => dispatch(subjectsActions.createItemSubjects(data))
-});
+})
 
 export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(ModalSubjects)
-);
+)
 
 const styles = ({
   divCol6: {

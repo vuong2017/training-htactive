@@ -1,9 +1,9 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import { DashBoard, NotFound, Sections, Subject, Posts } from '../views';
-import DrawerMemu from '../components/admin/drawerMenu';
-import Sidebar from '../components/admin/siderBar';
+import { DashBoard, NotFound, Sections, Subject, Posts } from '../views'
+import DrawerMemu from '../components/admin/drawerMenu'
+import Sidebar from '../components/admin/siderBar'
 
 export const routes = [
   {
@@ -31,7 +31,7 @@ export const routes = [
     component: NotFound,
     exact: false
   }
-];
+]
 
 function AdminRoutes() {
   return (
@@ -44,7 +44,7 @@ function AdminRoutes() {
         ))}
       </Switch>
     </React.Fragment>
-  );
+  )
 }
 
-export default AdminRoutes;
+export default AdminRoutes

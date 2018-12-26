@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactPaginate from "react-paginate";
+import React from 'react'
+import ReactPaginate from "react-paginate"
 
 class Pagination extends React.Component {
     constructor(props){
@@ -27,8 +27,8 @@ class Pagination extends React.Component {
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
             />
-        );
+        )
     }
 }
 
-export default Pagination;
+export default Pagination

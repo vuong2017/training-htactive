@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class DrawerMemu extends Component {
   render() {
@@ -66,4 +66,4 @@ class DrawerMemu extends Component {
   }
 }
 
-export default connect(null)(withRouter(DrawerMemu));
+export default connect(null)(withRouter(DrawerMemu))

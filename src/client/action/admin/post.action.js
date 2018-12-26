@@ -1,10 +1,10 @@
-import { actionEnums } from '../admin-action-enum';
+import { actionEnums } from '../admin-action-enum'
 import {
   getPostsServices,
   addPostsServices,
   updatePostsServices,
   deletePostsServices,
-} from '../../services/admin/post.services';
+} from '../../services/admin/post.services'
 
 const postsRequest = () => {
   return {
@@ -56,14 +56,14 @@ const deletePosts = (isSuccess, data) => {
 // Get Data
 const fetchDataPosts = idSections => {
   return async (dispatch) => {
-    dispatch(postsRequest());
+    dispatch(postsRequest())
     try {
-      const result = await getPostsServices(idSections);
+      const result = await getPostsServices(idSections)
       if (result) {
-        dispatch(getPosts(true, result));
+        dispatch(getPosts(true, result))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(getPosts(false, error))
     }
   }
@@ -71,14 +71,14 @@ const fetchDataPosts = idSections => {
 // Create Data
 const createItemPosts = data => {
   return async (dispatch) => {
-    // dispatch(postsRequest());
+    // dispatch(postsRequest())
     try {
-      const result = await addPostsServices(data);
+      const result = await addPostsServices(data)
       if (result.data) {
-        dispatch(createPosts(true, result.data));
+        dispatch(createPosts(true, result.data))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(createPosts(false, error))
     }
   }
@@ -86,14 +86,14 @@ const createItemPosts = data => {
 // Update Data
 const updateItemPosts = data => {
   return async (dispatch) => {
-    // dispatch(postsRequest());
+    // dispatch(postsRequest())
     try {
-      const result = await updatePostsServices(data);
+      const result = await updatePostsServices(data)
       if (result.data) {
-        dispatch(updatePosts(true, result.data));
+        dispatch(updatePosts(true, result.data))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(updatePosts(false, error))
     }
   }
@@ -101,14 +101,14 @@ const updateItemPosts = data => {
 // Delete Data
 const deleteItemPosts = (data) => {
   return async (dispatch) => {
-    // dispatch(postsRequest());
+    // dispatch(postsRequest())
     try {
-      const result = await deletePostsServices(data);
+      const result = await deletePostsServices(data)
       if (result.data) {
-        dispatch(deletePosts(true, result.data));
+        dispatch(deletePosts(true, result.data))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(deletePosts(false, error))
     }
   }
@@ -120,7 +120,7 @@ const setCurrentPagePosts = page => ({
   payload: {
       page
   }
-});
+})
 
 // Set numberData Pagination
 const setPerPagePosts = perPage => ({

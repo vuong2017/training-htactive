@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 class Footer extends Component {
   render() {
@@ -15,7 +15,7 @@ class Footer extends Component {
                 <li>
                   <a
                     className="iphone"
-                    href="https://itunes.apple.com/us/app/tutorials-point/id914891263?ls=1&amp;mt=8"
+                    href="https://itunes.apple.com/us/app/tutorials-point/id914891263?ls=1&ampmt=8"
                     target="_blank"
                     rel="nofollow"
                   >
@@ -264,8 +264,8 @@ class Footer extends Component {
           </div>
         </div>
       </footer>
-    );
+    )
   }
 }
 
-export default Footer;
+export default Footer

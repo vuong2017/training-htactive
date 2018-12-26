@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import NotificationSystem from "react-notification-system";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import NotificationSystem from "react-notification-system"
 
 import { ShowItemsPagination, ShowTotalPage } from "../../../common/pagination"
-import { subjectsActions } from "../../../action/admin/subject.action";
+import { subjectsActions } from "../../../action/admin/subject.action"
 
 import PaginationTable, {
   Pagination,
   ShowPerPage
-} from "../../../components/admin/Pagination";
-import TableSubjects from "./tableSubjects";
-import ModalSubjects from "./modalSubjects";
+} from "../../../components/admin/Pagination"
+import TableSubjects from "./tableSubjects"
+import ModalSubjects from "./modalSubjects"
 
 class Subjects extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isModal: false
-    };
-    this.addNotification = this.addNotification.bind(this);
+    }
+    this.addNotification = this.addNotification.bind(this)
   }
 
   componentDidMount() {
-    this._notificationSystem = this.refs.notificationSystem;
-    this.props.fetchDataSubjects();
+    this._notificationSystem = this.refs.notificationSystem
+    this.props.fetchDataSubjects()
   }
 
   handleClose() {
-    this.setState({ isModal: false });
+    this.setState({ isModal: false })
   }
 
   handleShow() {
-    this.setState({ isModal: true });
+    this.setState({ isModal: true })
   }
 
   addNotification(status, messages) {
@@ -39,22 +39,22 @@ class Subjects extends Component {
       title: status ? "Success" : "Fail",
       message: messages,
       level: status ? "success" : "error"
-    });
+    })
   }
 
   countItems(items,currentPage,perPage,sumItems){
-    var no = (currentPage + 1) * perPage - perPage;
+    var no = (currentPage + 1) * perPage - perPage
     var result = []
     var data = [...items]
     data.map(()=> {
         no += 1
         result.push(no)
     })
-    return `${result[0] || 0} - ${result[data.length-1] || 0} of ${sumItems}`;
+    return `${result[0] || 0} - ${result[data.length-1] || 0} of ${sumItems}`
   }
 
   render() {
-    const { isModal } = this.state;
+    const { isModal } = this.state
     const { 
       listData, 
       sumItems, 
@@ -125,7 +125,7 @@ class Subjects extends Component {
         )}
         <NotificationSystem ref="notificationSystem" />
       </div>
-    );
+    )
   }
 }
 
@@ -151,7 +151,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Subjects);
+export default connect(mapStateToProps, mapDispatchToProps)(Subjects)
 
 const styles = {
   textAlign: {
@@ -164,4 +164,4 @@ const styles = {
     position: "absolute",
     right: 20
   }
-};
+}

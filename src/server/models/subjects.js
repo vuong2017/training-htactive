@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const subjects = new Schema(
   {
@@ -13,7 +13,7 @@ const subjects = new Schema(
     logo: { type: String, required: [true, 'Không được để trống Logo'] },
   },
   { timestamps: { createdAt: 'created_at' } }
-);
+)
 
-const Subjects = mongoose.model('subjects', subjects);
-export default Subjects;
+const Subjects = mongoose.model('subjects', subjects)
+export default Subjects

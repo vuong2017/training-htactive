@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import { SectionsReducer } from './admin/sections.reducer';
-import { PostsReducer } from './admin/posts.reducer';
-import { SubjectsReducer } from './admin/subjects.reducer';
-import { CategoryReducer } from './category.reducer';
-import { TrainingReducer } from './training.reducer';
+import { SectionsReducer } from './admin/sections.reducer'
+import { PostsReducer } from './admin/posts.reducer'
+import { SubjectsReducer } from './admin/subjects.reducer'
+import { CategoryReducer } from './category.reducer'
+import { TrainingReducer } from './training.reducer'
 
 const reducer = combineReducers({
   SectionsReducer,
@@ -14,4 +14,4 @@ const reducer = combineReducers({
   SubjectsReducer,
 })
 
-export default reducer;
+export default reducer

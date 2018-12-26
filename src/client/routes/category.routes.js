@@ -1,11 +1,11 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
+import React from "react"
+import { Switch, Route } from "react-router-dom"
+import { connect } from "react-redux"
 
-import { TrainingActions } from '../action/client/training.action';
-import { Training, NotFound } from "../views";
+import { TrainingActions } from '../action/client/training.action'
+import { Training, NotFound } from "../views"
 
-import { Header, SideBar, Content, Footer } from "../components/Training";
+import { Header, SideBar, Content, Footer } from "../components/Training"
 
 export const routes = [
   {
@@ -23,17 +23,17 @@ export const routes = [
     component: NotFound,
     exact: false
   }
-];
+]
 
 class CategoryRoutes extends React.Component {
 
   componentDidMount() {
-    this.props.fetchDataTN(this.props.match.params.idSubjects);
+    this.props.fetchDataTN(this.props.match.params.idSubjects)
   }
   render() {
-    const { isRequest, data, isLoading, status } = this.props;
+    const { isRequest, data, isLoading, status } = this.props
     if (isLoading || isRequest) {
-      return <h1>dang fetch</h1>;
+      return <h1>dang fetch</h1>
     }
     if (!status && !isLoading) {
       return <NotFound />
@@ -53,7 +53,7 @@ class CategoryRoutes extends React.Component {
         </div>
         <Footer />
       </React.Fragment>
-    );
+    )
   }
 }
 
@@ -73,5 +73,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryRoutes);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryRoutes)
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function Options({ prevTitle, nextTitle }) {
   return (
@@ -18,15 +18,15 @@ function Options({ prevTitle, nextTitle }) {
       >
         <span>{nextTitle}</span>
         <i className="fa fa-arrow-circle-o-right big-font" />
-        <span>&nbsp;</span>
+        <span>&nbsp</span>
       </a>
     </div>
-  );
+  )
 }
 
 Options.propTypes = {
   prevTitle: PropTypes.string.isRequired,
   nextTitle: PropTypes.string.isRequired,
-};
+}
 
-export default Options;
+export default Options

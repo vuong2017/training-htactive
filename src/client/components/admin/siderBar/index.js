@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class Sidebar extends Component {
   reset() {
@@ -36,4 +36,4 @@ class Sidebar extends Component {
     )
   }
 }
-export default connect(null)(withRouter(Sidebar));
+export default connect(null)(withRouter(Sidebar))

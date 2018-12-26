@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React from 'react';
+import React from 'react'
 
 class Footer extends React.Component{
   render() {
@@ -15,7 +15,7 @@ class Footer extends React.Component{
                         <span><a href="/about/tutorials_writing.htm">Write for us</a> | <a href="/about/faq.htm">FAQ's</a> | <a href="/about/about_helping.htm">Helping</a> | <a href="/about/contact_us.htm">Contact</a></span></p>
                 </div>
                 <div className="colb">
-                    <form action="javascript:void(0);" method="post" id="commentform" className="comment-form">
+                    <form action="javascript:void(0)" method="post" id="commentform" className="comment-form">
                         <input type="text" placeholder="Enter Email for Newsletter" name="Enter Email for Newsletter"   />
                         <input name="submit" type="submit" id="submit" className="submit" value="Submit" />
                     </form>
@@ -23,7 +23,7 @@ class Footer extends React.Component{
             </footer>
             <div id="popupDiv" className="overlay">
                 <div className="popup">
-                    <a className="imageclose" href="javascript:void(0);" id="popupDivClose">
+                    <a className="imageclose" href="javascript:void(0)" id="popupDivClose">
                         <i className="fa fa-close"></i>
                     </a>
                     <div id="popupDivContent">
@@ -33,8 +33,8 @@ class Footer extends React.Component{
             {/* <script src="js/progressively.js"></script> */}
         </div>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default Footer;
+export default Footer

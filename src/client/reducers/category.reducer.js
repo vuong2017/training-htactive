@@ -1,4 +1,4 @@
-import { actionEnums } from '../action/admin-action-enum';
+import { actionEnums } from '../action/admin-action-enum'
 
 const initialState = {
     isRequest: false,
@@ -14,7 +14,7 @@ export function CategoryReducer(state = initialState, action) {
         return {
             ...state,
             isRequest: true,
-        };
+        }
 
         //GET
             case actionEnums.GET_CATEGORY_DATA:
@@ -26,7 +26,7 @@ export function CategoryReducer(state = initialState, action) {
                 isLoading: false,
                 status:true,
                 messages: action.payload.data.messages
-            };
+            }
             }
             else
             return {
@@ -35,7 +35,7 @@ export function CategoryReducer(state = initialState, action) {
                 isLoading: false,
                 status:false,
                 messages: action.payload.data.messages
-            };
+            }
             default:
                 return state
             }

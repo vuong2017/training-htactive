@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Modal, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-import UpdateSection from './updateSections';
-import { sectionsActions } from '../../../action/admin/section.action';
+import UpdateSection from './updateSections'
+import { sectionsActions } from '../../../action/admin/section.action'
 
 class TableSections extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isUpdate: false,
       isDelete: false,
@@ -17,19 +17,19 @@ class TableSections extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    const { dataSubject } = nextProps;
+    const { dataSubject } = nextProps
     this.setState({
       _idD: dataSubject && dataSubject.length > 0 ? dataSubject[0]._id : null,
       isRequest: nextProps.isRequest
     })
   }
   async fetchDataFindIdSubject(subjects_id = this.state._id || this.state._idD) {
-    await this.props.fetchDataFindIdSubject(subjects_id);
+    await this.props.fetchDataFindIdSubject(subjects_id)
   }
   async componentDidMount() {
-    await this.props.fetchDataSection();
-    await this.props.fetchDataSubject();
-    await this.fetchDataFindIdSubject();
+    await this.props.fetchDataSection()
+    await this.props.fetchDataSubject()
+    await this.fetchDataFindIdSubject()
   }
   /**Update */
   closeModalUpdate() { this.setState({ isUpdate: false }) }
@@ -43,8 +43,8 @@ class TableSections extends Component {
   }
 
   render() {
-    const { isUpdate, itemUpdate } = this.state;
-    const { sectionData, dataSubject } = this.props;
+    const { isUpdate, itemUpdate } = this.state
+    const { sectionData, dataSubject } = this.props
     return (
       <div>
         <div className='col-sm-2' style={{paddingLeft: '0px'}} >
@@ -137,7 +137,7 @@ class TableSections extends Component {
     )
   }
   async deleteItem() {
-    const { _idD, _id } = this.state;
+    const { _idD, _id } = this.state
     const data = {
       subjects_id: _idD,
       section_id: _id
@@ -177,7 +177,7 @@ const mapDispatchToProps = (dispatch) => ({
   deleteItemSection: (data) => dispatch(sectionsActions.deleteItemSection(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableSections);
+export default connect(mapStateToProps, mapDispatchToProps)(TableSections)
 
 const styles = ({
   textAlign: {

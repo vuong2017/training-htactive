@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
-import { withRouter } from "react-router";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Modal, Button } from "react-bootstrap"
+import { withRouter } from "react-router"
 
-import { subjectsActions } from "../../../action/admin/subject.action";
+import { subjectsActions } from "../../../action/admin/subject.action"
 
 class UpdateSubjects extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: {
         id: this.props.itemsUpdate._id,
@@ -17,22 +17,22 @@ class UpdateSubjects extends Component {
         logo:""
       },
       errors: {}
-    };
-    this.updateSubjects = this.updateSubjects.bind(this);
-    this.handleChangeFiles = this.handleChangeFiles.bind(this);
-    this.handleChangeInput = this.handleChangeInput.bind(this);
+    }
+    this.updateSubjects = this.updateSubjects.bind(this)
+    this.handleChangeFiles = this.handleChangeFiles.bind(this)
+    this.handleChangeInput = this.handleChangeInput.bind(this)
   }
 
   updateSubjects() {
-    const { data: { id, name, title, tagline, logo} } = this.state;
+    const { data: { id, name, title, tagline, logo} } = this.state
     const data = {
       id,
       name,
       title,
       tagline,
     }
-    if(logo) data.logo = logo;
-    const errors = this.checkEmpty(data);
+    if(logo) data.logo = logo
+    const errors = this.checkEmpty(data)
     if (Object.keys(errors).length === 0) {
       return this.props.updateItemSubjects(data).then(() => {
           const { status, isRequest, messages } = this.props
@@ -66,15 +66,15 @@ class UpdateSubjects extends Component {
   }
 
   checkEmpty(data) {
-    const errors = {};
-    if (!data.title) errors.title = "Không được để trống tiêu đề!";
-    if (!data.tagline) errors.tagline = "Không được để trống tag line!";
-    if (!data.name) errors.name = "Không được để trống tên môn!";
-    return errors;
+    const errors = {}
+    if (!data.title) errors.title = "Không được để trống tiêu đề!"
+    if (!data.tagline) errors.tagline = "Không được để trống tag line!"
+    if (!data.name) errors.name = "Không được để trống tên môn!"
+    return errors
   }
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors } = this.state
     return (
       <React.Fragment>
         <Modal
@@ -164,7 +164,7 @@ class UpdateSubjects extends Component {
           </Modal.Footer>
         </Modal>
       </React.Fragment>
-    );
+    )
   }
 }
 
@@ -173,19 +173,19 @@ const mapStateToProps = ({ SubjectsReducer }) => {
     isRequest: SubjectsReducer.isRequest,
     status: SubjectsReducer.status,
     messages: SubjectsReducer.messages
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   updateItemSubjects: data => dispatch(subjectsActions.updateItemSubjects(data)),
-});
+})
 
 export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(UpdateSubjects)
-);
+)
 
 const styles = ({
   divCol6: {

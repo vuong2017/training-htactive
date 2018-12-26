@@ -1,11 +1,11 @@
-import React from "react";
-import { FormGroup, FormControl } from "react-bootstrap";
+import React from "react"
+import { FormGroup, FormControl } from "react-bootstrap"
 
 class ShowPerPage extends React.Component {
 
     constructor(props) {
-        super(props);
-        this.onChangeInput = this.onChangeInput.bind(this);
+        super(props)
+        this.onChangeInput = this.onChangeInput.bind(this)
     }
 
     onChangeInput(e) {
@@ -35,8 +35,8 @@ class ShowPerPage extends React.Component {
                         </FormControl>
                     </FormGroup>
             </React.Fragment>
-        );
+        )
     }
 }
 
-export default ShowPerPage;
+export default ShowPerPage

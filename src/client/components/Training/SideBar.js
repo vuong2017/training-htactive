@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { withRouter } from "react-router";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { withRouter } from "react-router"
 
 class SideBar extends React.Component{
   render() {
-    const { data } = this.props;
+    const { data } = this.props
     return (
       <React.Fragment>
         <div className="leftside-nav" id="Leftside-nav">
@@ -24,7 +24,7 @@ class SideBar extends React.Component{
                             <div className="scroller">
                                 <ul className="nav left-menu">
                                     <li>
-                                        <a href="javascript:void(0);" className="clsSection">{e.name}</a>
+                                        <a href="javascript:void(0)" className="clsSection">{e.name}</a>
                                         <ul className="submenu">
                                             {e.posts && e.posts.map((e, i) => { return (
                                             <li className={`clsLecture ${i ? '' : 'activebar'}`} id={i} key={e._id}>
@@ -44,8 +44,8 @@ class SideBar extends React.Component{
             </aside>
         </div>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default withRouter(SideBar);
+export default withRouter(SideBar)

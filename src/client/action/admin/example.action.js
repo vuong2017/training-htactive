@@ -1,5 +1,5 @@
-import { actionEnums } from '../admin-action-enum';
-import { getExampleServices } from '../../services/admin/example-services';
+import { actionEnums } from '../admin-action-enum'
+import { getExampleServices } from '../../services/admin/example-services'
 
 const exampleRequest = () => {
   return {
@@ -20,8 +20,8 @@ const getExample = (isSuccess, data, errMessage) => {
 
 const fetchDataExample = () => {
   return async (dispatch) => {
-    dispatch(exampleRequest());
-    const result = await getExampleServices();
+    dispatch(exampleRequest())
+    const result = await getExampleServices()
     if (result) {
       dispatch(getExample(true, result, null))
     } else {

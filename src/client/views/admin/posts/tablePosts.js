@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
 
-import UpdatePosts from "./updatePosts";
-import { postsActions } from "../../../action/admin/post.action";
+import UpdatePosts from "./updatePosts"
+import { postsActions } from "../../../action/admin/post.action"
 
 class TablePosts extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isUpdate: false,
       itemsUpdate: {}
-    };
+    }
   }
 
   /**Update */
   closeModalUpdate() {
-    this.setState({ isUpdate: false });
+    this.setState({ isUpdate: false })
   }
   showModalUpdate(itemsUpdate) {
     this.setState({
       isUpdate: true,
       itemsUpdate
-    });
+    })
   }
 
   // delete
@@ -30,21 +30,21 @@ class TablePosts extends Component {
     const data = {
       idPosts: _id,
       idSections: this.props.match.params.idSections
-    };
+    }
     this.props.deleteItemPosts(data).then(() => {
-      const { status, isRequest, messages } = this.props;
+      const { status, isRequest, messages } = this.props
       if (!isRequest && status) {
-        this.props.addNotification(status, messages);
+        this.props.addNotification(status, messages)
       } else {
-        this.props.addNotification(status, messages);
+        this.props.addNotification(status, messages)
       }
-    }); // delete
+    }) // delete
   }
 
   render() {
-    const { isUpdate, itemsUpdate } = this.state;
-    const { listData, perPage, currentPage } = this.props;
-    var no = (currentPage + 1) * perPage - perPage;
+    const { isUpdate, itemsUpdate } = this.state
+    const { listData, perPage, currentPage } = this.props
+    var no = (currentPage + 1) * perPage - perPage
     return (
       <div>
         <table
@@ -64,7 +64,7 @@ class TablePosts extends Component {
           <tbody>
             {listData &&
               listData.map((item, index) => {
-                no += 1;
+                no += 1
                 return (
                   <tr key={index}>
                     <td>{no}</td>
@@ -97,7 +97,7 @@ class TablePosts extends Component {
                       </button>
                     </td>
                   </tr>
-                );
+                )
               })}
           </tbody>
         </table>
@@ -110,7 +110,7 @@ class TablePosts extends Component {
           />
         )}
       </div>
-    );
+    )
   }
 }
 
@@ -119,19 +119,19 @@ const mapStateToProps = ({ PostsReducer }) => {
     isRequest: PostsReducer.isRequest,
     status: PostsReducer.status,
     messages: PostsReducer.messages
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   deleteItemPosts: _id => dispatch(postsActions.deleteItemPosts(_id))
-});
+})
 
 export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(TablePosts)
-);
+)
 
 const styles = {
   textAlign: {
@@ -141,4 +141,4 @@ const styles = {
   btnActions: {
     marginLeft: 5
   }
-};
+}

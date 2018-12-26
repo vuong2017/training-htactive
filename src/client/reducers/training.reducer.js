@@ -1,4 +1,4 @@
-import { actionEnums } from '../action/admin-action-enum';
+import { actionEnums } from '../action/admin-action-enum'
 
 const initialState = {
   isRequest: false,
@@ -18,12 +18,12 @@ export function TrainingReducer(state = initialState, action) {
       return {
         ...state,
         isRequest: true,
-      };
+      }
     case 'TRAINING_POSTS_REQUEST':
       return {
         ...state,
         isRequestPost: true,
-      };
+      }
     //GET CONTENT SHOW SITE TRAINING
     case 'GET_TRAINING_DATA_POSTS':
     if (action.payload.isSuccess) {
@@ -34,7 +34,7 @@ export function TrainingReducer(state = initialState, action) {
         isLoadingPost: false,
         statusPost:true,
         messages: action.payload.data.messages
-      };
+      }
     }
     else
       return {
@@ -43,7 +43,7 @@ export function TrainingReducer(state = initialState, action) {
         isLoadingPost: false,
         statusPost:false,
         messages: action.payload.data.messages
-      };  
+      }  
     //GET ALL
     case 'GET_TRAINING_DATA':
       if (action.payload.isSuccess) {
@@ -54,7 +54,7 @@ export function TrainingReducer(state = initialState, action) {
           isLoading: false,
           status:true,
           messages: action.payload.data.messages
-        };
+        }
       }
       else
         return {
@@ -63,7 +63,7 @@ export function TrainingReducer(state = initialState, action) {
           isLoading: false,
           status:false,
           messages: action.payload.data.messages
-        };
+        }
     default:
       return state
   }

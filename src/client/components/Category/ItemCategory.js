@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 function ItemCategory({ item }) {
   return (
@@ -13,7 +13,7 @@ function ItemCategory({ item }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ItemCategory;
+export default ItemCategory
