@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
-import { withRouter } from "react-router";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Modal, Button } from "react-bootstrap"
+import { withRouter } from "react-router"
 
-import { configEditor } from "../../../common/config";
-import { postsActions } from "../../../action/admin/post.action";
+import { configEditor } from "../../../common/config"
+import { postsActions } from "../../../action/admin/post.action"
 
 class ModalPosts extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: {
         title: "",
         content: ""
       },
       errors: {}
-    };
-    if (typeof window !== "undefined") {
-      this.ReactQuill = require("react-quill");
     }
-    this.insertSection = this.insertSection.bind(this);
-    this.handleChangeEditor = this.handleChangeEditor.bind(this);
-    this.handleChangeInput = this.handleChangeInput.bind(this);
+    if (typeof window !== "undefined") {
+      this.ReactQuill = require("react-quill")
+    }
+    this.insertSection = this.insertSection.bind(this)
+    this.handleChangeEditor = this.handleChangeEditor.bind(this)
+    this.handleChangeInput = this.handleChangeInput.bind(this)
   }
 
   async insertSection() {
-    const { data: {title, content} } = this.state;
+    const { data: {title, content} } = this.state
     const data = {
       idSections: this.props.match.params.idSections,
       title,
       content
     }
-    const errors = this.checkEmpty(data);
+    const errors = this.checkEmpty(data)
     if (Object.keys(errors).length === 0) {
       return this.props.createItemPosts(data).then(() => {
           const { status, isRequest, messages } = this.props
@@ -52,7 +52,7 @@ class ModalPosts extends Component {
         ...this.state.data,
         content: value
       }
-    });
+    })
   }
 
   handleChangeInput(e) {
@@ -61,19 +61,19 @@ class ModalPosts extends Component {
         ...this.state.data,
         [e.target.name]: e.target.value
       }
-    });
+    })
   }
 
   checkEmpty(data) {
-    const errors = {};
-    if(!data.title) errors.title = "Không được để trống tiêu đề!";
+    const errors = {}
+    if(!data.title) errors.title = "Không được để trống tiêu đề!"
     if(!this.getCotent.getEditor().getText().trim().length) errors.content = "Không được để trống nội dung!"
-    return errors;
+    return errors
   }
 
   render() {
-    const ReactQuill = this.ReactQuill;
-    const { data, errors } = this.state;
+    const ReactQuill = this.ReactQuill
+    const { data, errors } = this.state
     if (typeof window !== "undefined" && ReactQuill) {
       return (
         <React.Fragment>
@@ -132,7 +132,7 @@ class ModalPosts extends Component {
             </Modal.Footer>
           </Modal>
         </React.Fragment>  
-      );
+      )
     } else {
       return null
     }
@@ -144,16 +144,16 @@ const mapStateToProps = ({ PostsReducer }) => {
     isRequest: PostsReducer.isRequest,
     status: PostsReducer.status,
     messages: PostsReducer.messages,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   createItemPosts: data => dispatch(postsActions.createItemPosts(data))
-});
+})
 
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ModalPosts));
+)(ModalPosts))
 
 

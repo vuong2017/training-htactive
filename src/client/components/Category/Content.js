@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ItemCategory from "./ItemCategory";
+import React, { Component } from "react"
+import ItemCategory from "./ItemCategory"
 
 class Content extends Component {
   render() {
-    var { data } = this.props;
+    var { data } = this.props
     return (
       <div role="main" className="content">
         <div id="content" className="full">
@@ -19,13 +19,13 @@ class Content extends Component {
         <div className="container list-item">
           <div className="row">
             {data && data.map(function(item, index) {
-              return <ItemCategory item={item} key={index} />;
+              return <ItemCategory item={item} key={index} />
             })}
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Content;
+export default Content

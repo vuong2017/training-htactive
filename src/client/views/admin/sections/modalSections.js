@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
-import { sectionsActions } from '../../../action/admin/section.action';
+import { connect } from 'react-redux'
+import { Modal, Button } from 'react-bootstrap'
+import { sectionsActions } from '../../../action/admin/section.action'
 
 class ModalSections extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       name: '',
       subject_name: '',
@@ -15,13 +15,13 @@ class ModalSections extends Component {
 
   async insertSection() {
     this.setState({ isSubmit: true })
-    const { listdataSubject } = this.props;
-    const _id_render = listdataSubject.length > 0 ? listdataSubject[0]._id : null;
-    const { name, _id } = this.state;
+    const { listdataSubject } = this.props
+    const _id_render = listdataSubject.length > 0 ? listdataSubject[0]._id : null
+    const { name, _id } = this.state
     const data = {
       name,
       _id: _id || _id_render
-    };
+    }
     if (name) {
       await this.props.createItemSection(data).then(() => {
         const { status, isRequest, messages } = this.props
@@ -32,7 +32,7 @@ class ModalSections extends Component {
         } else {
             this.props.addNotification(status, messages)
         }
-      }) // add;
+      }) // add
     }
   }
 
@@ -44,16 +44,16 @@ class ModalSections extends Component {
   }
 
   async componentDidMount() {
-    await this.props.fetchDataSubject();
-    await this.fetchDataFindIdSubject();
+    await this.props.fetchDataSubject()
+    await this.fetchDataFindIdSubject()
   }
 
   async fetchDataFindIdSubject(subjects_id = this.props.listdataSubject.length > 0 ? this.props.listdataSubject[0]._id : null) {
-    await this.props.fetchDataFindIdSubject(subjects_id);
+    await this.props.fetchDataFindIdSubject(subjects_id)
   }
 
   render() {
-    const { listdataSubject } = this.props;
+    const { listdataSubject } = this.props
     return (
       <Modal
         show={this.props.isModal}
@@ -128,7 +128,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchDataSubject: () => dispatch(sectionsActions.fetchDataSubject()),
   fetchDataFindIdSubject: (subjects_id) => dispatch(sectionsActions.fetchDataFindIdSubject(subjects_id)),
 })
-export default connect(mapStateToProps, mapDispatchToProps)(ModalSections);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalSections)
 
 const styles = ({
   divCol6: {

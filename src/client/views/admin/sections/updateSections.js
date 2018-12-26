@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux'
+import { Modal, Button } from 'react-bootstrap'
 
-import { sectionsActions } from '../../../action/admin/section.action';
+import { sectionsActions } from '../../../action/admin/section.action'
 
 class UpdateSections extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       avatar_url: null,
       name: '',
@@ -22,28 +22,28 @@ class UpdateSections extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchDataSubject();
+    this.props.fetchDataSubject()
   }
 
   async updateItems() {
     this.setState({ isSubmit: true })
-    const { name, _id } = this.state;
+    const { name, _id } = this.state
     const data = {
       name,
       _id
-    };
+    }
     if (name) {
-      await this.props.updateItemsSection(data);
+      await this.props.updateItemsSection(data)
       if (!this.state.isRequest) {
-        this.props.closeModalUpdate();
-        this.props.reloadTable();
-        this.handleReset();
+        this.props.closeModalUpdate()
+        this.props.reloadTable()
+        this.handleReset()
       }
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { itemUpdate } = nextProps;
+    const { itemUpdate } = nextProps
     this.setState({
       _id: itemUpdate && itemUpdate._id,
       name: itemUpdate && itemUpdate.name,
@@ -51,7 +51,7 @@ class UpdateSections extends Component {
   }
 
   render() {
-    const { dataSubject } = this.props;
+    const { dataSubject } = this.props
     return (
       <Modal
         show={this.props.isUpdate}
@@ -124,4 +124,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchDataSubject: () => dispatch(sectionsActions.fetchDataSubject())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateSections);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateSections)

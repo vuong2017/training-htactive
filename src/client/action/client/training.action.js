@@ -1,5 +1,5 @@
-import { actionEnums } from '../admin-action-enum';
-import { getTrainingServices, getTNPostIdServices } from '../../services/client/training-services';
+import { actionEnums } from '../admin-action-enum'
+import { getTrainingServices, getTNPostIdServices } from '../../services/client/training-services'
 
 const trainingRequest = () => {
   return {
@@ -34,30 +34,30 @@ const getTrainingPost = (isSuccess, data) => {
 }
 // GET POST
 const fetchDataTNPostId = (idSubjects, idPosts) => async dispatch => {
-  dispatch(trainingPostsRequest());
+  dispatch(trainingPostsRequest())
   try {
-      const result = await getTNPostIdServices(idSubjects, idPosts);
+      const result = await getTNPostIdServices(idSubjects, idPosts)
       if (result) {
         dispatch(getTrainingPost(true, result))
       }
   } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(getTrainingPost(false, error))
   }
-}; 
+} 
 // GET ALL
 const fetchDataTN = (id) => async dispatch => {
-  dispatch(trainingRequest());
+  dispatch(trainingRequest())
   try {
-      const result = await getTrainingServices(id);
+      const result = await getTrainingServices(id)
       if (result) {
         dispatch(getTraining(true, result))
       }
   } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(getTraining(false, error))
   }
-};
+}
 
 export const TrainingActions = {
   getTrainingPost,

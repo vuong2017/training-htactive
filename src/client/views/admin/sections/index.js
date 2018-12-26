@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import NotificationSystem from "react-notification-system";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import NotificationSystem from "react-notification-system"
 
-import TableSections from './tableSections';
-import ModalSections from './modalSections';
+import TableSections from './tableSections'
+import ModalSections from './modalSections'
 
 class Sections extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isModal: false
     }
-    this.addNotification = this.addNotification.bind(this);
+    this.addNotification = this.addNotification.bind(this)
   }
 
   componentDidMount() {
-    this._notificationSystem = this.refs.notificationSystem;
+    this._notificationSystem = this.refs.notificationSystem
   }
 
   handleClose() {
-    this.setState({ isModal: false });
+    this.setState({ isModal: false })
   }
 
   handleShow() {
-    this.setState({ isModal: true });
+    this.setState({ isModal: true })
   }
 
   addNotification(status, messages) {
@@ -31,11 +31,11 @@ class Sections extends Component {
       title: status ? "Success" : "Fail",
       message: messages,
       level: status ? "success" : "error"
-    });
+    })
   }
 
   render() {
-    const { isModal } = this.state;
+    const { isModal } = this.state
     return (
       <div className="page-content sidebar-page clearfix">
         <div className="page-content-wrapper">
@@ -79,10 +79,10 @@ const mapStateToProps = (state) => {
   return {
     isRequest: state.SectionsReducer.isRequest,
     status: state.SectionsReducer.status,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(Sections);
+export default connect(mapStateToProps)(Sections)
 
 const styles = ({
   textAlign: {

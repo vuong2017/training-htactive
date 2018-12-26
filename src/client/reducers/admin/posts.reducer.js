@@ -1,4 +1,4 @@
-import { actionEnums } from "../../action/admin-action-enum";
+import { actionEnums } from "../../action/admin-action-enum"
 
 const initialState = {
   isRequest: true,
@@ -11,7 +11,7 @@ const initialState = {
     text: "",
     order: false
   }
-};
+}
 
 export function PostsReducer(state = initialState, action) {
   switch (action.type) {
@@ -19,8 +19,8 @@ export function PostsReducer(state = initialState, action) {
       state = {
         ...state,
         isRequest: true
-      };
-      return state;
+      }
+      return state
 
     /**GET */
     case actionEnums.FETCH_DATA_POSTS:
@@ -32,16 +32,16 @@ export function PostsReducer(state = initialState, action) {
           currentPage: 0,
           data: action.payload.data.content,
           messages: action.payload.data.messages
-        };
-        return state;
+        }
+        return state
       } else {
         state = {
           ...state,
           isRequest: false,
           status: false,
           messages: action.payload.data.messages
-        };
-        return state;
+        }
+        return state
       }
 
     /**Add */
@@ -60,14 +60,14 @@ export function PostsReducer(state = initialState, action) {
             text: '',
             order:false,
           }
-        };
+        }
       } else {
         return {
           ...state,
           isRequest: false,
           status: false,
           messages: action.payload.data.messages
-        };
+        }
       }
 
     /**Update */
@@ -75,10 +75,10 @@ export function PostsReducer(state = initialState, action) {
       if (action.payload.isSuccess) {
         const update = state.data.posts.map((e, i) => {
           if (e._id === action.payload.data.content._id) {
-            return { ...action.payload.data.content };
+            return { ...action.payload.data.content }
           }
-          return e;
-        });
+          return e
+        })
         return {
           ...state,
           isRequest: false,
@@ -89,14 +89,14 @@ export function PostsReducer(state = initialState, action) {
             text: '',
             order:false,
           }
-        };
+        }
       } else {
         return {
           ...state,
           isRequest: false,
           status: false,
           messages: action.payload.data.messages
-        };
+        }
       }
 
     /**Delete */
@@ -113,14 +113,14 @@ export function PostsReducer(state = initialState, action) {
           },
           status: true,
           messages: action.payload.data.messages
-        };
+        }
       } else {
         return {
           ...state,
           isRequest: false,
           status: false,
           messages: action.payload.data.messages
-        };
+        }
       }
 
     // SET ITEM CURRENT PAGE
@@ -128,7 +128,7 @@ export function PostsReducer(state = initialState, action) {
       return {
         ...state,
         currentPage: action.payload.page
-      };
+      }
 
     // SET NUMBER DATA
     case actionEnums.SET_ITEM_PERPAGE_POSTS:
@@ -136,7 +136,7 @@ export function PostsReducer(state = initialState, action) {
         ...state,
         perPage: action.payload.perPage,
         currentPage: 0
-      };
+      }
 
     // SORT BY
     case actionEnums.SORT_BY_POSTS:
@@ -147,8 +147,8 @@ export function PostsReducer(state = initialState, action) {
           text: action.payload.result.sortName,
           order: action.payload.result.order
         }
-      };
+      }
     default:
-      return state;
+      return state
   }
 }

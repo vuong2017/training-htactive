@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const sections = new Schema({
   _id: {
@@ -20,7 +20,7 @@ const sections = new Schema({
     timestamps: {
       createdAt: 'created_at'
     }
-  });
+  })
 
-const Sections = mongoose.model('sections', sections);
-export default Sections;
+const Sections = mongoose.model('sections', sections)
+export default Sections

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function ContentHeader({ logo, title, tagline }) {
   return (
@@ -16,13 +16,13 @@ function ContentHeader({ logo, title, tagline }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 ContentHeader.propTypes = {
   logo: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
-};
+}
 
-export default ContentHeader;
+export default ContentHeader

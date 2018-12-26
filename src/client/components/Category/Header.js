@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 class Header extends Component {
 
   openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("right_obs").style.display = "block";
+    document.getElementById("mySidenav").style.width = "250px"
+    document.getElementById("right_obs").style.display = "block"
   }
 
   render() {
@@ -43,7 +43,7 @@ class Header extends Component {
                 </li>
                 <li>
                   <a target="_blank" href="/programming_examples/">
-                    <i className="fa fa-cubes" /> &nbsp;Examples
+                    <i className="fa fa-cubes" /> &nbspExamples
                   </a>
                 </li>
                 <li>
@@ -53,12 +53,12 @@ class Header extends Component {
                       alt="Whiteboard"
                       title="Whiteboard"
                     />
-                    &nbsp;Whiteboard
+                    &nbspWhiteboard
                   </a>
                 </li>
                 <li>
                   <a href="https://www.tutorialspoint.com/netmeeting.php">
-                    <i className="fa-camera" /> &nbsp;Net Meeting
+                    <i className="fa-camera" /> &nbspNet Meeting
                   </a>
                 </li>
                 <li>
@@ -68,7 +68,7 @@ class Header extends Component {
                 </li>
                 <li>
                   <a href="/articles/index.php">
-                    <i className="icon icon-file-text-o" /> &nbsp;Articles
+                    <i className="icon icon-file-text-o" /> &nbspArticles
                   </a>
                 </li>
                 <li className="top-icons">
@@ -197,8 +197,8 @@ class Header extends Component {
           </div>
         </header>
       </div>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

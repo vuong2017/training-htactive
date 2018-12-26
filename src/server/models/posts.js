@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const posts = new Schema(
   {
@@ -10,7 +10,7 @@ const posts = new Schema(
     status: { type: Boolean, default: true },
   },
   { timestamps: { createdAt: 'created_at' } }
-);
+)
 
-const Posts = mongoose.model('posts', posts);
-export default Posts;
+const Posts = mongoose.model('posts', posts)
+export default Posts

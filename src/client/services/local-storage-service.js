@@ -2,7 +2,7 @@ const storageKeys = {
   ADMIN_TOKEN: 'ADMIN_TOKEN',
   USER_ID: 'USER_ID',
   ROLE_ID: 'ROLE_ID'
-};
+}
 /**ADMIN_TOKEN */
 const getCurrentUserToken = async () => await localStorage.getItem(storageKeys.ADMIN_TOKEN)
 const setCurrentUserToken = async (token) => await localStorage.setItem(storageKeys.ADMIN_TOKEN, token || '')

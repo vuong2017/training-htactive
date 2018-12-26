@@ -1,4 +1,4 @@
-import { actionEnums } from '../admin-action-enum';
+import { actionEnums } from '../admin-action-enum'
 import {
   getSectionsServices,
   postSectionServices,
@@ -8,7 +8,7 @@ import {
   /**SUBJECT */
   getSubjectFindIdServies,
   getSubjectServies
-} from '../../services/admin/section.services';
+} from '../../services/admin/section.services'
 
 const sectionRequest = () => {
   return {
@@ -72,65 +72,65 @@ const updateSection = (isSuccess, dataUpdate, message) => {
 
 const fetchDataSection = () => {
   return async (dispatch) => {
-    dispatch(sectionRequest());
+    dispatch(sectionRequest())
     try {
-      const result = await getSectionsServices();
+      const result = await getSectionsServices()
       if (result) {
-        dispatch(getSections(true, result, null));
+        dispatch(getSections(true, result, null))
       }
     } catch (e) {
-      dispatch(getSections(false, null, e.response ? 'Error 1' : 'Error 2'));
+      dispatch(getSections(false, null, e.response ? 'Error 1' : 'Error 2'))
     }
   }
 }
 
 const fetchDataFindID = (sections_id) => {
   return async (dispatch) => {
-    dispatch(sectionRequest());
+    dispatch(sectionRequest())
     try {
-      const result = await getfindIDServies(sections_id);
+      const result = await getfindIDServies(sections_id)
       if (result) {
-        dispatch(getSectionsFindId(true, result, null));
+        dispatch(getSectionsFindId(true, result, null))
       }
     } catch (e) {
-      dispatch(getSectionsFindId(false, null, e.response ? 'Error 1' : 'Error 2'));
+      dispatch(getSectionsFindId(false, null, e.response ? 'Error 1' : 'Error 2'))
     }
   }
 }
 
 const createItemSection = (data) => async (dispatch) => {
   try {
-    const result = await postSectionServices(data);
+    const result = await postSectionServices(data)
     if (result.data) {
-      dispatch(createSection(true, result.data));
+      dispatch(createSection(true, result.data))
     }
   } catch (e) {
-    const error = e.response ? e.response.data : { message: "Network Error" };
+    const error = e.response ? e.response.data : { message: "Network Error" }
     dispatch(createSection(false, error))
   }
 }
 
 const deleteItemSection = (data) => async (dispatch) => {
   try {
-    const result = await deleteSectionsServices(data);
+    const result = await deleteSectionsServices(data)
     if (result) {
-      dispatch(deleteSection(true, result.data.data._id));
+      dispatch(deleteSection(true, result.data.data._id))
     }
   } catch (e) {
-    dispatch(deleteSection(false, null, e.response ? 'ERR 1' : 'ERR 2'));
+    dispatch(deleteSection(false, null, e.response ? 'ERR 1' : 'ERR 2'))
   }
 }
 
 const updateItemsSection = (data) => async (dispatch, reloading) => {
   try {
-    const result = await updateSectionServices(data);
+    const result = await updateSectionServices(data)
     if (result) {
-      dispatch(updateSection(true, null));
-      dispatch(fetchDataSection(reloading().SectionsReducer));
-      dispatch(fetchDataSubject(reloading().SectionsReducer));
+      dispatch(updateSection(true, null))
+      dispatch(fetchDataSection(reloading().SectionsReducer))
+      dispatch(fetchDataSubject(reloading().SectionsReducer))
     }
   } catch (e) {
-    dispatch(updateSection(false, null, e.response ? 'Err 1' : 'Err 2'));
+    dispatch(updateSection(false, null, e.response ? 'Err 1' : 'Err 2'))
   }
 }
 
@@ -165,28 +165,28 @@ const getSubjectFindId = (isSuccess, data, error) => {
 
 const fetchDataFindIdSubject = (subjects_id) => {
   return async (dispatch) => {
-    dispatch(subjectRequest());
+    dispatch(subjectRequest())
     try {
-      const result = await getSubjectFindIdServies(subjects_id);
+      const result = await getSubjectFindIdServies(subjects_id)
       if (result) {
-        dispatch(getSubjectFindId(true, result, null));
+        dispatch(getSubjectFindId(true, result, null))
       }
     } catch (e) {
-      dispatch(getSubjectFindId(false, null, e.response ? 'Error 1' : 'Error 2'));
+      dispatch(getSubjectFindId(false, null, e.response ? 'Error 1' : 'Error 2'))
     }
   }
 }
 
 const fetchDataSubject = () => {
   return async (dispatch) => {
-    dispatch(subjectRequest());
+    dispatch(subjectRequest())
     try {
-      const result = await getSubjectServies();
+      const result = await getSubjectServies()
       if (result) {
-        dispatch(getSubject(true, result, null));
+        dispatch(getSubject(true, result, null))
       }
     } catch (e) {
-      dispatch(getSubject(false, null, e.response ? 'Error 1' : 'Error 2'));
+      dispatch(getSubject(false, null, e.response ? 'Error 1' : 'Error 2'))
     }
   }
 }

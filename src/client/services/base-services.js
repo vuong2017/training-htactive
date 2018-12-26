@@ -1,9 +1,9 @@
-import axios from "axios";
-import { getCurrentUserToken } from "./local-storage-service";
+import axios from "axios"
+import { getCurrentUserToken } from "./local-storage-service"
 
 const postTakenData = async (url, data) => {
   try {
-    // const token = await getCurrentUserToken();
+    // const token = await getCurrentUserToken()
     const result = await axios({
       method: "post",
       url,
@@ -13,17 +13,17 @@ const postTakenData = async (url, data) => {
       },
       data
     }).then(res => {
-      return res;
-    });
-    return result;
+      return res
+    })
+    return result
   } catch (e) {
-    throw e;
+    throw e
   }
-};
+}
 
 const getTakenData = async url => {
   try {
-    // const token = await getCurrentUserToken();
+    // const token = await getCurrentUserToken()
     const result = await axios({
       method: "get",
       url,
@@ -32,20 +32,20 @@ const getTakenData = async url => {
         "Content-Type": "application/json"
       }
     }).then(res => {
-      return res.data;
-    });
-    return result;
+      return res.data
+    })
+    return result
   } catch (e) {
-    throw e;
+    throw e
   }
-};
+}
 
 const postFormData = async (url, data) => {
   try {
-    let formData = new FormData();
+    let formData = new FormData()
     Object.keys(data).forEach(key => {
-      formData.append(key, data[key]);
-    });
+      formData.append(key, data[key])
+    })
     const result = await axios({
       method: "post",
       url,
@@ -55,12 +55,12 @@ const postFormData = async (url, data) => {
       },
       data: formData
     }).then(res => {
-      return res;
-    });
-    return result;
+      return res
+    })
+    return result
   } catch (error) {
-    throw error;
+    throw error
   }
-};
+}
 
-export { postTakenData, postFormData, getTakenData };
+export { postTakenData, postFormData, getTakenData }

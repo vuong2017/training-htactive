@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React from "react";
+import React from "react"
 
 class Header extends React.Component{
   openLeftNav() {
@@ -76,8 +76,8 @@ class Header extends React.Component{
             </div>
         </header>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

@@ -1,10 +1,10 @@
-import { actionEnums } from '../admin-action-enum';
+import { actionEnums } from '../admin-action-enum'
 import {
   getSubjectsServices,
   addSubjectsServices,
   updateSubjectsServices,
   deleteSubjectsServices,
-} from '../../services/admin/subject.services';
+} from '../../services/admin/subject.services'
 
 const subjectsRequest = () => {
   return {
@@ -55,14 +55,14 @@ const deleteSubjects = (isSuccess, data) => {
 // Get Data
 const fetchDataSubjects = () => {
   return async (dispatch) => {
-    dispatch(subjectsRequest());
+    dispatch(subjectsRequest())
     try {
-      const result = await getSubjectsServices();
+      const result = await getSubjectsServices()
       if (result) {
-        dispatch(getSubjects(true, result));
+        dispatch(getSubjects(true, result))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(getSubjects(false, error))
     }
   }
@@ -70,14 +70,14 @@ const fetchDataSubjects = () => {
 // Create Data
 const createItemSubjects = data => {
   return async (dispatch) => {
-    dispatch(subjectsRequest());
+    dispatch(subjectsRequest())
     try {
-      const result = await addSubjectsServices(data);
+      const result = await addSubjectsServices(data)
       if (result.data) {
-        dispatch(createSubjects(true, result.data));
+        dispatch(createSubjects(true, result.data))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(createSubjects(false, error))
     }
   }
@@ -85,14 +85,14 @@ const createItemSubjects = data => {
 // Update Data
 const updateItemSubjects = data => {
   return async (dispatch) => {
-    dispatch(subjectsRequest());
+    dispatch(subjectsRequest())
     try {
-      const result = await updateSubjectsServices(data);
+      const result = await updateSubjectsServices(data)
       if (result.data) {
-        dispatch(updateSubjects(true, result.data));
+        dispatch(updateSubjects(true, result.data))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(updateSubjects(false, error))
     }
   }
@@ -100,14 +100,14 @@ const updateItemSubjects = data => {
 // Delete Data
 const deleteItemSubjects = data => {
   return async (dispatch) => {
-    dispatch(subjectsRequest());
+    dispatch(subjectsRequest())
     try {
-      const result = await deleteSubjectsServices(data);
+      const result = await deleteSubjectsServices(data)
       if (result.data) {
-        dispatch(deleteSubjects(true, result.data));
+        dispatch(deleteSubjects(true, result.data))
       }
     } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" };
+      const error = e.response ? e.response.data : { message: "Network Error" }
       dispatch(deleteSubjects(false, error))
     }
   }
@@ -119,7 +119,7 @@ const setCurrentPageSubjects = page => ({
   payload: {
       page
   }
-});
+})
 
 // Set numberData Pagination
 const setPerPageSubjects = perPage => ({

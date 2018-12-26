@@ -1,4 +1,4 @@
-import { actionEnums } from '../../action/admin-action-enum';
+import { actionEnums } from '../../action/admin-action-enum'
 
 const initialState = {
   isRequest: false,
@@ -19,7 +19,7 @@ export function SectionsReducer(state = initialState, action) {
         ...state,
         isRequest: true
       }
-      return state;
+      return state
     /**GET */
     case actionEnums.FETCH_DATA_SECTIONS:
       if (action.payload.isSuccess) {
@@ -30,7 +30,7 @@ export function SectionsReducer(state = initialState, action) {
           status:true,
           errMessage: null
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
@@ -39,7 +39,7 @@ export function SectionsReducer(state = initialState, action) {
           status:false,
           errMessage: action.payload.error
         }
-        return state;
+        return state
       }
     /**GET FIND ID */
     case actionEnums.FETCH_ITEM_SECTION_FIND_ID:
@@ -50,7 +50,7 @@ export function SectionsReducer(state = initialState, action) {
           dataFind: action.payload.data.data,
           errMessage: null
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
@@ -58,7 +58,7 @@ export function SectionsReducer(state = initialState, action) {
           dataFind: [],
           errMessage: action.payload.error
         }
-        return state;
+        return state
       }
     /**POST */
     case actionEnums.CREATE_DATA_SECTIONS:
@@ -70,7 +70,7 @@ export function SectionsReducer(state = initialState, action) {
           sectionData: [...state.sectionData, action.payload.data.content],
           messages: action.payload.data.messages
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
@@ -78,7 +78,7 @@ export function SectionsReducer(state = initialState, action) {
           isRequest: false,
           messages: action.payload.data.messages
         }
-        return state;
+        return state
       }
     /**UPDATE */
     case actionEnums.UPDATE_ITEM_SECTIONS:
@@ -88,14 +88,14 @@ export function SectionsReducer(state = initialState, action) {
           isRequest: false,
           errMessage: null
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
           isRequest: false,
           errMessage: action.payload.error
         }
-        return state;
+        return state
       }
     /**DELETE */
     case actionEnums.DELETE_ITEM_SECTIONS:
@@ -106,14 +106,14 @@ export function SectionsReducer(state = initialState, action) {
           sectionData: state.sectionData.filter(e => e._id !== action.payload.id),
           errMessage: null
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
           isRequest: false,
           errMessage: action.payload.message
         }
-        return state;
+        return state
       }
     /**SUBJECT */
     case actionEnums.SUBJECTS_REQUEST:
@@ -121,7 +121,7 @@ export function SectionsReducer(state = initialState, action) {
         ...state,
         isRequest: false,
       }
-      return state;
+      return state
     /**GET_SUBJECTS_DATA_FIND_ID */
     case actionEnums.GET_SUBJECTS_DATA_FIND_ID:
       if (action.payload.isSuccess) {
@@ -132,7 +132,7 @@ export function SectionsReducer(state = initialState, action) {
           sectionData: action.payload.data.content.sections,
           errMessage: null
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
@@ -151,7 +151,7 @@ export function SectionsReducer(state = initialState, action) {
           dataAll: action.payload.data.content,
           errMessage: null
         }
-        return state;
+        return state
       } else {
         state = {
           ...state,
@@ -160,6 +160,6 @@ export function SectionsReducer(state = initialState, action) {
           errMessage: action.payload.error
         }
       }
-    default: return state;
+    default: return state
   }
 }

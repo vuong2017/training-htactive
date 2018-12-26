@@ -1,9 +1,9 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import { Login, Category, NotFound } from '../views';
-import AdminRoutes from './admin.routes';
-import CategoryRoutes from './category.routes';
+import { Login, Category, NotFound } from '../views'
+import AdminRoutes from './admin.routes'
+import CategoryRoutes from './category.routes'
 
 export const routes = [
   {
@@ -31,7 +31,7 @@ export const routes = [
     component: NotFound,
     exact: false
   }
-];
+]
 
 function Routes() {
   return (
@@ -40,7 +40,7 @@ function Routes() {
         <Route key={route.path} {...route} />
       ))}
     </Switch>
-  );
+  )
 }
 
-export default Routes;
+export default Routes

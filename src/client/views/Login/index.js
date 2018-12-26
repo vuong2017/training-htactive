@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Login extends React.Component {
 
@@ -12,4 +12,4 @@ class Login extends React.Component {
 }
 
 
-export default Login;
+export default Login

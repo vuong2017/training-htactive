@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from "react-redux"
 
 import { Options, ContentDetails } from '../../components/Training'
-import { TrainingActions } from '../../action/client/training.action';
+import { TrainingActions } from '../../action/client/training.action'
 
 class Training extends React.Component{
 
   componentDidMount() {
-    const { idPosts, idSubjects } = this.props.match.params;
+    const { idPosts, idSubjects } = this.props.match.params
     const content = {
       content: this.props.dataTraining.sections[0] ? this.props.dataTraining.sections[0].posts[0] : ''
     }
@@ -21,7 +21,7 @@ class Training extends React.Component{
   }
 
   render() {
-    const { content, isLoadingPost } = this.props; 
+    const { content, isLoadingPost } = this.props 
     if (isLoadingPost) {
       return <h1>Dang fetch</h1>
     }
@@ -43,7 +43,7 @@ class Training extends React.Component{
                 <iframe id="download" style={{ display: 'none',visibility: 'hidden' }}></iframe>
             </div>
         </div>
-      );
+      )
     }
     return <h1>Khong tim thay bai</h1>
   }
@@ -64,5 +64,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Training);
+export default connect(mapStateToProps, mapDispatchToProps)(Training)
 

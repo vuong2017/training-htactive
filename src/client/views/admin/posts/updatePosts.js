@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
-import { withRouter } from "react-router";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Modal, Button } from "react-bootstrap"
+import { withRouter } from "react-router"
 
-import { configEditor } from "../../../common/config";
+import { configEditor } from "../../../common/config"
 import { postsActions } from '../../../action/admin/post.action'
 
 class UpdatePosts extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: {
         _id: this.props.itemsUpdate._id,
@@ -16,23 +16,23 @@ class UpdatePosts extends Component {
         content: this.props.itemsUpdate.content,
       },
       errors:{}
-    };
-    if (typeof window !== "undefined") {
-      this.ReactQuill = require("react-quill");
     }
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleChangeEditor = this.handleChangeEditor.bind(this);
-    this.handleChangeInput = this.handleChangeInput.bind(this);
+    if (typeof window !== "undefined") {
+      this.ReactQuill = require("react-quill")
+    }
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleChangeEditor = this.handleChangeEditor.bind(this)
+    this.handleChangeInput = this.handleChangeInput.bind(this)
   }
 
   handleUpdate() {
-    const { data: {_id, title, content} } = this.state;
+    const { data: {_id, title, content} } = this.state
     const data = {
       _id,
       title,
       content
     }
-    const errors = this.checkEmpty(data);
+    const errors = this.checkEmpty(data)
     if (Object.keys(errors).length === 0) {
       return this.props.updateItemPosts(data).then(() => {
           const { status, isRequest, messages } = this.props
@@ -46,7 +46,7 @@ class UpdatePosts extends Component {
     }
     this.setState({
       errors
-    });
+    })
   }
 
   handleChangeEditor(value) {
@@ -55,7 +55,7 @@ class UpdatePosts extends Component {
         ...this.state.data,
         content: value
       }
-    });
+    })
   }
 
   handleChangeInput(e) {
@@ -64,19 +64,19 @@ class UpdatePosts extends Component {
         ...this.state.data,
         [e.target.name]: e.target.value
       }
-    });
+    })
   }
 
   checkEmpty(data) {
-    const errors = {};
-    if(!data.title) errors.title = "Không được để trống tiêu đề!";
+    const errors = {}
+    if(!data.title) errors.title = "Không được để trống tiêu đề!"
     if(!this.getCotent.getEditor().getText().trim().length) errors.content = "Không được để trống nội dung!"
-    return errors;
+    return errors
   }
 
   render() {
-    const ReactQuill = this.ReactQuill;
-    const { data, errors } = this.state;
+    const ReactQuill = this.ReactQuill
+    const { data, errors } = this.state
     if (typeof window !== "undefined" && ReactQuill) {
       return (
         <Modal
@@ -133,9 +133,9 @@ class UpdatePosts extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-      );
+      )
     } else {
-      return null;
+      return null
     }
   }
 }
@@ -145,12 +145,12 @@ const mapStateToProps = ({ PostsReducer }) => {
     isRequest: PostsReducer.isRequest,
     status: PostsReducer.status,
     messages: PostsReducer.messages,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   updateItemPosts: data => dispatch(postsActions.updateItemPosts(data)),
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdatePosts));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdatePosts))
 
