@@ -8,6 +8,11 @@ import CategoryRoutes from './category.routes'
 export const routes = [
   {
     path: '/',
+    component: () => <h1>Home</h1>,
+    exact: true
+  },
+  {
+    path: '/login',
     component: Login,
     exact: true
   },

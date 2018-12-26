@@ -1,6 +1,6 @@
 function htmlTemplate(reactDom, url, helmetData) {
-  if (url.search('/admin') !== -1) {
-    return `
+	if (url.search('/admin') !== -1) {
+		return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -89,8 +89,8 @@ function htmlTemplate(reactDom, url, helmetData) {
     </html>
    `;
 	}
-  if (url === "/category/") {
-    return `
+	if (url === "/category/") {
+		return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -151,8 +151,26 @@ function htmlTemplate(reactDom, url, helmetData) {
     </body>
     </html>
    `;
-  }
-  return `
+	}
+	if (url === "/login/") {
+		return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+		<meta charset='utf-8'>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<link rel="stylesheet" type="text/css" href="/login/css/style.css">
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		</head>
+		<body>
+        	<div id='app'>${reactDom}</div>
+			<script src='/app.bundle.js'></script>
+    </body>
+    </html>
+   `;
+	}
+	return `
     <!DOCTYPE html>
     <html>
     <head>
