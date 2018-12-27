@@ -9,6 +9,8 @@ import {
   getSelect
 } from '../controllers/subjects'
 
+import { roleMiddleware } from '../middlewares/role'
+
 // Set The Storage Engine
 const storage = multer.diskStorage({
   destination: 'public/uploads/',
@@ -42,7 +44,7 @@ const upload = multer({
 
 
 export default (router) => {
-  router.get('/subjects', getSubjects)
+  router.get('/subjects',roleMiddleware("SUBJECTS_GET_LIST"), getSubjects)
   router.get('/subjects/:id', getSubjectsJoin)
   router.get('/search', getSelect)
   router.post('/subjects', upload.single('logo'), insertSubjects)

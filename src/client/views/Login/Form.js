@@ -21,6 +21,7 @@ class Form extends React.Component {
   }
 
   handleAdd(values, actions) {
+    this.props.loginRequest(values)
     console.log(values)
   }
 
