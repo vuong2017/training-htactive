@@ -10,7 +10,7 @@ const getSubjects = async (req, res) => {
       const data = {
         status: true,
         content: result,
-        messages: 'Lấy Dữ Liệu Thành Công'
+        message: 'Lấy Dữ Liệu Thành Công'
       }
       return res.status(200).json(data)
     }

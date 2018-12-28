@@ -4,10 +4,12 @@ import { Router } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 
+import { storeRedux } from './services/axios-services'
 import Routes from './routes'
 import createStore from './store/configureStore'
 
 const store = createStore(window.REDUX_DATA)
+storeRedux(store)
 
 const jsx = (
   <ReduxProvider store={store}>
@@ -18,4 +20,5 @@ const jsx = (
 )
 
 const app = document.getElementById('app')
-ReactDOM.hydrate(jsx, app)
+const renderOrHydrate = app.innerHTML.trim().length ? 'hydrate' : 'render'
+ReactDOM[renderOrHydrate](jsx, app)

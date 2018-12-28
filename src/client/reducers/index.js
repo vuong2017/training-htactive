@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { loadingBarReducer } from 'react-redux-loading-bar'
 
 import { SectionsReducer } from './admin/sections.reducer'
 import { PostsReducer } from './admin/posts.reducer'
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   TrainingReducer,
   CategoryReducer,
   SubjectsReducer,
+  loadingBar: loadingBarReducer,
 })
 
 export default reducer
