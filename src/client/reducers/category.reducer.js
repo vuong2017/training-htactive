@@ -1,11 +1,9 @@
 import { actionEnums } from '../action/admin-action-enum'
 
 const initialState = {
-    isRequest: false,
-    isLoading: true,
     status: false,
     data: [],
-    messages: null
+    messages: ""
 }
 
 export function CategoryReducer(state = initialState, action) {
@@ -18,23 +16,14 @@ export function CategoryReducer(state = initialState, action) {
 
         //GET
             case actionEnums.GET_CATEGORY_DATA:
-            if (action.payload.isSuccess) {
-            return {
-                ...state,
-                data: action.payload.data.content,
-                isRequest: false,
-                isLoading: false,
-                status:true,
-                messages: action.payload.data.messages
-            }
-            }
-            else
-            return {
-                ...state,
-                isRequest: false,
-                isLoading: false,
-                status:false,
-                messages: action.payload.data.messages
+            {
+                const { status, content, message } = action.payload
+                return {
+                    ...state,
+                    status,
+                    data: content || [],
+                    message
+                }
             }
             default:
                 return state

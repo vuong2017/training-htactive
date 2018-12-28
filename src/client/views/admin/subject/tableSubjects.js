@@ -44,7 +44,7 @@ class TableSubjects extends Component {
 
   render() {
     const { isUpdate, itemsUpdate } = this.state
-    const { listData, perPage, currentPage } = this.props
+    const { listData, perPage, currentPage, permissionCreate, permissionUpdate, permissionDelete } = this.props
     var no = (currentPage + 1) * perPage - perPage
     return (
       <div>
@@ -76,6 +76,7 @@ class TableSubjects extends Component {
                       <button
                         type="button"
                         className="btn btn-default btn-sm"
+                        disabled={!permissionCreate}
                         style={styles.btnActions}
                       >
                         <span className="glyphicon glyphicon-eye-open" />
@@ -83,6 +84,7 @@ class TableSubjects extends Component {
                       <button
                         type="button"
                         className="btn btn-success btn-sm"
+                        disabled={!permissionUpdate}
                         style={styles.btnActions}
                         onClick={() => this.showModalUpdate(item)}
                       >
@@ -91,6 +93,7 @@ class TableSubjects extends Component {
                       <button
                         type="button"
                         className="btn btn-danger btn-sm"
+                        disabled={!permissionDelete}
                         style={styles.btnActions}
                         onClick={() => this.handleDelete(item._id)}
                       >

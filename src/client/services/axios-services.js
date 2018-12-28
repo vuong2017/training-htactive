@@ -57,7 +57,9 @@ export const api = (opts = { fullResponse: false }) => {
         |   và đã được thực thi trên server)
         |------------------------------------------------------------------------------------
         */
-        // LocalStorage.removeAll()
+        window.localStorage.removeItem("token")
+        window.localStorage.removeItem("positionNumber")
+        window.location.href = baseUrl.URL_LOGIN
       }
       if (fullResponse) {
         return response
@@ -114,6 +116,13 @@ export const api = (opts = { fullResponse: false }) => {
   return {
     get: (url, options = { headers: {} }) => axios.get(url, { ...genarateConfig(defaultOption, options) }),
     post: (url, data, options = { headers: {} }) => axios.post(url, data, { ...genarateConfig(defaultOption, options) }),
+    postFormData: (url, data, options = { headers: {} }) => {
+      let formData = new FormData()
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key])
+      })
+      return axios.post(url, formData, { ...genarateConfig(defaultOption, options) })
+    },
     put: (url, data, options = { headers: {} }) => axios.put(url, data, { ...genarateConfig(defaultOption, options) }),
     delete: (url, options = { headers: {} }) => axios.delete(url, { ...genarateConfig(defaultOption, options) }),
   }

@@ -1,10 +1,4 @@
 import { actionEnums } from '../admin-action-enum'
-import {
-  getSubjectsServices,
-  addSubjectsServices,
-  updateSubjectsServices,
-  deleteSubjectsServices,
-} from '../../services/admin/subject.services'
 
 import baseUrl from '../../common/baseUrl'
 import api from '../../services/axios-services'
@@ -22,87 +16,43 @@ const getSubjects = data => ({
 })
 
 
-const createSubjects = (isSuccess, data) => {
-  return {
-    type: actionEnums.CREATE_DATA_SUBJECTS,
-    payload: {
-      isSuccess,
-      data
-    }
-  }
-}
+const createSubjects = data => ({
+  type: actionEnums.CREATE_DATA_SUBJECTS,
+  payload: data
+})
 
-const updateSubjects = (isSuccess, data) => {
-  return {
-    type: actionEnums.UPDATE_DATA_SUBJECTS,
-    payload: {
-      isSuccess,
-      data
-    }
-  }
-}
+const updateSubjects = data => ({
+  type: actionEnums.UPDATE_DATA_SUBJECTS,
+  payload: data
+})
 
-const deleteSubjects = (isSuccess, data) => {
-  return {
-    type: actionEnums.DELETE_DATA_SUBJECTS,
-    payload: {
-      isSuccess,
-      data
-    }
-  }
-}
+const deleteSubjects = data => ({
+  type: actionEnums.DELETE_DATA_SUBJECTS,
+  payload: data
+})
 // Get Data
 const fetchDataSubjects = () => async dispatch => {
-  const url = `${baseUrl.API_RECRUIT}/subjects`
-  console.log("url", url)
+  const url = `${baseUrl.Api}/subjects`
   const result = await api().get(url)
-  console.log(result)
   dispatch(getSubjects(result))
 }
 // Create Data
-const createItemSubjects = data => {
-  return async (dispatch) => {
-    dispatch(subjectsRequest())
-    try {
-      const result = await addSubjectsServices(data)
-      if (result.data) {
-        dispatch(createSubjects(true, result.data))
-      }
-    } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" }
-      dispatch(createSubjects(false, error))
-    }
-  }
+const createItemSubjects = data => async dispatch => {
+  const url = `${baseUrl.Api}/subjects`
+  const result = await api().postFormData(url, data)
+  dispatch(createSubjects(result))
 }
 // Update Data
-const updateItemSubjects = data => {
-  return async (dispatch) => {
-    dispatch(subjectsRequest())
-    try {
-      const result = await updateSubjectsServices(data)
-      if (result.data) {
-        dispatch(updateSubjects(true, result.data))
-      }
-    } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" }
-      dispatch(updateSubjects(false, error))
-    }
-  }
+const updateItemSubjects = data => async dispatch => {
+  const url = `${baseUrl.Api}/subjects/update`
+  const result = await api().postFormData(url, data)
+  dispatch(updateSubjects(result))
 }
 // Delete Data
-const deleteItemSubjects = data => {
-  return async (dispatch) => {
-    dispatch(subjectsRequest())
-    try {
-      const result = await deleteSubjectsServices(data)
-      if (result.data) {
-        dispatch(deleteSubjects(true, result.data))
-      }
-    } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" }
-      dispatch(deleteSubjects(false, error))
-    }
-  }
+const deleteItemSubjects = data => async dispatch => {
+  const url = `${baseUrl.Api}/subjects/delete`
+  const result = await  api().post(url, data)
+  dispatch(deleteSubjects(result))
 }
 
 // Set Current Page Pagination

@@ -1,33 +1,17 @@
 import { actionEnums } from "../admin-action-enum"
-import { getAllSubjectsServices } from "../../services/client/category-services"
 
-const categoryRequest = () => {
-  return {
-    type: actionEnums.CATEGORY_REQUEST
-  }
-}
+import baseUrl from '../../common/baseUrl'
+import api from '../../services/axios-services'
 
-const getCategory = (isSuccess, data) => {
-  return {
-    type: actionEnums.GET_CATEGORY_DATA,
-    payload: {
-      isSuccess,
-      data
-    }
-  }
-}
+const getCategory = data => ({
+  type: actionEnums.GET_CATEGORY_DATA,
+  payload: data
+})
 
 const fetchDataAllCategory = () => async dispatch => {
-  dispatch(categoryRequest())
-  try {
-    const result = await getAllSubjectsServices()
-    if (result) {
-      dispatch(getCategory(true, result))
-    }
-  } catch (e) {
-    const error = e.response ? e.response.data : { message: "Network Error" }
-    dispatch(getCategory(false, error))
-  }
+  const url = `${baseUrl.Api}/subjects`
+  const result = await api().get(url)
+  dispatch(getCategory(result))
 }
 
 export const categoryActions = {

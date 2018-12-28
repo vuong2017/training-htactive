@@ -6,7 +6,15 @@ export const roleMiddleware = name => {
       const { accesstoken } = req.headers
       const data = { name }
       const url = "http://localhost:8000/api/auth/check-role"
-      await postHeaders(url, accesstoken, data)
+      const result = await postHeaders(url, accesstoken, data)
+      if(result.session) {
+        res.set({
+          session: JSON.stringify({
+            positionNumber: result.session.positionNumber,
+            scopes: result.session.scopes
+          })
+        })
+      }
       return next()
     }
     catch (err) {
