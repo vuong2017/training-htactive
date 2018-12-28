@@ -45,9 +45,9 @@ const upload = multer({
 
 export default (router) => {
   router.get('/subjects',roleMiddleware("SUBJECTS_GET_LIST"), getSubjects)
-  router.get('/subjects/:id', getSubjectsJoin)
+  router.get('/subjects/:id', roleMiddleware("SUBJECTS_GET_INFO"), getSubjectsJoin)
   router.get('/search', getSelect)
-  router.post('/subjects', upload.single('logo'), insertSubjects)
-  router.post('/subjects/update', upload.single('logo'), updateSubjects)
-  router.post('/subjects/delete', deleteSubjects)
+  router.post('/subjects', roleMiddleware("SUBJECTS_CREATE"), upload.single('logo'), insertSubjects)
+  router.post('/subjects/update', roleMiddleware("SUBJECTS_UPDATE"), upload.single('logo'), updateSubjects)
+  router.post('/subjects/delete', roleMiddleware("SUBJECTS_DELETE"), deleteSubjects)
 }

@@ -51,7 +51,7 @@ export const routes = [
 const PrivateRoute = (props) => {
   const checkAuth = window.localStorage.getItem("token")
   const checkRole = window.localStorage.getItem("positionNumber") > 1
-  if (props.layout === 'login') return checkAuth ? document.location.replace(baseUrl.URL_ADMIN) : <Route {...props} />
+  if (props.layout === 'login') return checkAuth ? document.location.replace("/category") : <Route {...props} />
   if (props.layout === 'admin') {
     if (!checkRole) {
       window.localStorage.removeItem("token")
@@ -62,7 +62,7 @@ const PrivateRoute = (props) => {
   return <Route {...props} />
 }
 
-function Routes(props) {
+function Routes() {
   if (typeof(window) !== "undefined") {
     return (
       <React.Fragment>

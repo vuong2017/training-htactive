@@ -100,25 +100,25 @@ const insertSubjects = async (req, res) => {
       const data = {
         status: true,
         content: result,
-        messages: 'Thêm Mới Thành Công'
+        message: 'Thêm Mới Thành Công'
       }
       return res.status(200).json(data)
     } else {
-      throw { status: false, messages: "Không tìm thấy dữ liệu Subjects" }
+      throw { status: false, message: "Không tìm thấy dữ liệu Subjects" }
     }
   } catch (error) {
     const data = {
       status: false
     }
     if (error.name === "CastError") {
-      data.messages = "Không tìm thấy id"
+      data.message = "Không tìm thấy id"
       return res.status(404).json(data)
     }
     if (error.name === "MongoError") {
-      data.messages = "Internal Server Error"
+      data.message = "Internal Server Error"
       return res.status(500).json(data)
     }
-    return res.status(401).json(error)
+    return res.status(403).json(error)
   }
 }
 
@@ -137,25 +137,25 @@ const updateSubjects = async (req, res) => {
       const data = {
         status: true,
         content: result,
-        messages: 'Cập Nhật Thành Công'
+        message: 'Cập Nhật Thành Công'
       }
       return res.status(200).json(data)
     } else {
-      throw { status: false, messages: "Không tìm thấy dữ liệu Subjects" }
+      throw { status: false, message: "Không tìm thấy dữ liệu Subjects" }
     }
   } catch (error) {
     const data = {
       status: false
     }
     if (error.name === "CastError") {
-      data.messages = "Không tìm thấy id"
+      data.message = "Không tìm thấy id"
       return res.status(404).json(data)
     }
     if (error.name === "MongoError") {
-      data.messages = "Internal Server Error"
+      data.message = "Internal Server Error"
       return res.status(500).json(data)
     }
-    return res.status(401).json(error)
+    return res.status(403).json(error)
   }
 }
 
@@ -182,25 +182,25 @@ const deleteSubjects = async (req, res) => {
       const data = {
         status: true,
         content: result,
-        messages: 'Xóa Thành Công'
+        message: 'Xóa Thành Công'
       }
       return res.status(200).json(data)
     } else {
-      throw { status: false, messages: "Không tìm thấy dữ liệu Subjects" }
+      throw { status: false, message: "Không tìm thấy dữ liệu Subjects" }
     }
   } catch (err) {
     const data = {
       status: false
     }
     if (error.name === "CastError") {
-      data.messages = "Không tìm thấy id"
+      data.message = "Không tìm thấy id"
       return res.status(404).json(data)
     }
     if (error.name === "MongoError") {
-      data.messages = "Internal Server Error"
+      data.message = "Internal Server Error"
       return res.status(500).json(data)
     }
-    return res.status(401).json(error)
+    return res.status(403).json(error)
   }
 }
 

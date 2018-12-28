@@ -18,6 +18,17 @@ class Subjects extends Component {
     this.state = {
       isModal: false
     }
+    const checkScopes = name => {
+      return (window.localStorage.getItem("scopes").split(',')).find(e => e === name) ? true : false
+    }
+    this.listScopes = {
+      permissionGetAll : checkScopes("SCOPE_SUBJECTS_SUMARY"),
+      permissionGetInfo: checkScopes("SCOPE_SUBJECTS_READ"),
+      permissionCreate: checkScopes("SCOPE_SUBJECTS_CREATE"),
+      permissionUpdate: checkScopes("SCOPE_SUBJECTS_UPDATE"),
+      permissionDelete: checkScopes("SCOPE_SUBJECTS_DELETE"),
+    }
+    console.log(this.listScopes)
     this.addNotification = this.addNotification.bind(this)
   }
 
@@ -65,6 +76,7 @@ class Subjects extends Component {
       perPage, 
       dataSort 
     } = this.props
+    const { permissionCreate, permissionUpdate, permissionDelete } = this.listScopes
     return (
       <div className="page-content sidebar-page clearfix">
         <div className="page-content-wrapper">
@@ -89,6 +101,9 @@ class Subjects extends Component {
                     <TableSubjects 
                       listData={listData}
                       currentPage={currentPage}
+                      permissionCreate={permissionCreate}
+                      permissionUpdate={permissionUpdate}
+                      permissionDelete={permissionDelete}
                       perPage={perPage}
                       addNotification={this.addNotification} 
                     />
