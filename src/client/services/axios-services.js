@@ -1,6 +1,12 @@
 import Axios from 'axios'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 // Common
 import baseUrl from '../common/baseUrl'
+import { notificationsError } from '../common/notifications'
+// Store Redux
+let store = {}
+export const storeRedux = (storeRedux) => store = storeRedux
+
 
 const genarateConfig = (defaultOptions = {}, options = { headers: {} }) => {
   const { headers, ...rest } = options
@@ -17,23 +23,24 @@ export const api = (opts = { fullResponse: false }) => {
     headers: {
       "Content-Type": "application/json",
       'Cache-Control': 'no-cache',
+      "AccessToken": window.localStorage.getItem("token") ? window.localStorage.getItem("token") : ""
     },
   }
   axios.interceptors.request.use(
     config => {
-      // store.dispatch(showLoading('sectionBar'))
+      store.dispatch(showLoading('sectionBar'))
       return config
     },
     error => {
-      // store.dispatch(hideLoading('sectionBar'))
-      // notificationsError("Error when request")
+      store.dispatch(hideLoading('sectionBar'))
+      notificationsError("Error when request")
       console.log("[api-error-request]", error)
     }
   )
 
   axios.interceptors.response.use(
     response => {
-      // store.dispatch(hideLoading('sectionBar'))
+      store.dispatch(hideLoading('sectionBar'))
       if(response.headers.session) {
         /*
         |------------------------------------------------------------------------------------
@@ -58,10 +65,9 @@ export const api = (opts = { fullResponse: false }) => {
       return response.data
     },
     error => {
-      // store.dispatch(hideLoading('sectionBar'))
-      
+      store.dispatch(hideLoading('sectionBar'))
       if (error.response) {
-        console.log(error.response.data)
+        // console.log(error.response.data)
         if (error.response.status === 401) {
           /*
           |------------------------------------------------------------------------------------
@@ -78,19 +84,16 @@ export const api = (opts = { fullResponse: false }) => {
           |     hướng về trang login đang thực hiện ở chỗ khác (App/index)
           |------------------------------------------------------------------------------------
           */
-          // LocalStorage.removeAll()
-          // notificationsError(
-          //   "You don't have permission or your session is expired. Please login again",
-          //   () => window.location.href = baseUrl.URL_LOGIN
-          // )
-          window.location.href = baseUrl.URL_LOGIN
+         window.localStorage.removeItem("token")
+         window.localStorage.removeItem("positionNumber")
+         window.location.href = baseUrl.URL_LOGIN
         }
         if (fullResponse) {
           return error.response
         } 
         return error.response.data
       } else {
-        // notificationsError("Network Error")
+        notificationsError("Network Error")
         console.log("[api-error-response]", error)
 
         const faceResponse = {
