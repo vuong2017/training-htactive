@@ -6,21 +6,20 @@ import {
   deleteSubjectsServices,
 } from '../../services/admin/subject.services'
 
+import baseUrl from '../../common/baseUrl'
+import api from '../../services/axios-services'
+
+
 const subjectsRequest = () => {
   return {
     type: actionEnums.GET_SUBJECTS_REQUEST
   }
 }
 
-const getSubjects = (isSuccess, data) => {
-  return {
-    type: actionEnums.FETCH_DATA_SUBJECTS,
-    payload: {
-      isSuccess,
-      data
-    }
-  }
-}
+const getSubjects = data => ({
+  type: actionEnums.FETCH_DATA_SUBJECTS,
+  payload: data
+})
 
 
 const createSubjects = (isSuccess, data) => {
@@ -53,19 +52,12 @@ const deleteSubjects = (isSuccess, data) => {
   }
 }
 // Get Data
-const fetchDataSubjects = () => {
-  return async (dispatch) => {
-    dispatch(subjectsRequest())
-    try {
-      const result = await getSubjectsServices()
-      if (result) {
-        dispatch(getSubjects(true, result))
-      }
-    } catch (e) {
-      const error = e.response ? e.response.data : { message: "Network Error" }
-      dispatch(getSubjects(false, error))
-    }
-  }
+const fetchDataSubjects = () => async dispatch => {
+  const url = `${baseUrl.API_RECRUIT}/subjects`
+  console.log("url", url)
+  const result = await api().get(url)
+  console.log(result)
+  dispatch(getSubjects(result))
 }
 // Create Data
 const createItemSubjects = data => {
@@ -81,7 +73,7 @@ const createItemSubjects = data => {
       dispatch(createSubjects(false, error))
     }
   }
-} 
+}
 // Update Data
 const updateItemSubjects = data => {
   return async (dispatch) => {
@@ -96,7 +88,7 @@ const updateItemSubjects = data => {
       dispatch(updateSubjects(false, error))
     }
   }
-} 
+}
 // Delete Data
 const deleteItemSubjects = data => {
   return async (dispatch) => {
@@ -111,13 +103,13 @@ const deleteItemSubjects = data => {
       dispatch(deleteSubjects(false, error))
     }
   }
-} 
+}
 
 // Set Current Page Pagination
 const setCurrentPageSubjects = page => ({
   type: actionEnums.SET_ITEM_CURRENT_PAGE_SUBJECTS,
   payload: {
-      page
+    page
   }
 })
 
@@ -125,7 +117,7 @@ const setCurrentPageSubjects = page => ({
 const setPerPageSubjects = perPage => ({
   type: actionEnums.SET_ITEM_PERPAGE_SUBJECTS,
   payload: {
-      perPage
+    perPage
   }
 })
 
@@ -133,7 +125,7 @@ const setPerPageSubjects = perPage => ({
 const sortBySubjects = result => ({
   type: actionEnums.SORT_BY_SUBJECTS,
   payload: {
-      result,
+    result,
   }
 })
 

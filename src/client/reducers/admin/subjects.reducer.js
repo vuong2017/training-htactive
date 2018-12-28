@@ -24,21 +24,14 @@ export function SubjectsReducer(state = initialState, action) {
 
     /**GET */
     case actionEnums.FETCH_DATA_SUBJECTS:
-      if (action.payload.isSuccess) {
-        state = {
+      {
+        const { status, content, message,  } = action.payload
+        return {
           ...state,
-          isRequest: false,
-          data: action.payload.data.content,
-          messages: action.payload.data.messages
+          status,
+          data: content || [],
+          message
         }
-        return state
-      } else {
-        state = {
-          ...state,
-          isRequest: false,
-          messages: action.payload.data.messages
-        }
-        return state
       }
 
     /**Add */
